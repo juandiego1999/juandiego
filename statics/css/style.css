@@ -1,0 +1,719 @@
+@import '../fonts/public-sans/public-sans.css';
+body {
+  background-image: url(../images/background.png) !important;
+  background-color: #16171b !important;
+}
+
+.section-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.section-title h1 {
+  font: normal normal bold 3em "Public Sans";
+  text-align: center;
+  color: white;
+}
+
+.mail-button {
+  display: flex;
+  align-items: center;
+  grid-gap: 10px;
+  padding: 1em;
+  border-radius: 5px;
+  width: -moz-fit-content;
+  width: fit-content;
+  cursor: pointer;
+  transition: 0.3s;
+  background-color: transparent;
+  box-shadow: inset 0 0 0 1px #027dfc;
+}
+.mail-button a {
+  color: white !important;
+  font: normal normal bold 1.2em "Public Sans";
+  text-decoration: none !important;
+}
+.mail-button i {
+  color: white !important;
+  font-size: 20px !important;
+  margin: 0px auto !important;
+}
+.mail-button:hover {
+  transition: 0.3s;
+  background-color: #777;
+}
+
+.mobile-hamburger {
+  position: fixed;
+  right: 5vw;
+  top: 2vw;
+  display: none;
+  z-index: 10;
+}
+.mobile-hamburger img {
+  width: 40px;
+  height: 40px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.division {
+  display: grid;
+  grid-template-columns: 150px auto;
+  width: 100%;
+  max-width: 1920px;
+  margin: 0px auto;
+}
+.division .side-bar {
+  background-color: #222;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5em 1em 1em 1em;
+}
+.division .side-bar .top-logo {
+  width: 80px;
+  height: 80px;
+}
+.division .side-bar .top-logo img {
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.division .side-bar .menu-options {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.division .side-bar .menu-options span {
+  padding: 1em 0em;
+  color: #eee;
+  cursor: pointer;
+  font: normal normal normal 16px "Public Sans";
+  opacity: 0.5;
+  transition: 0.3s;
+}
+.division .side-bar .menu-options span:hover {
+  font: normal normal bold 16px "Public Sans";
+  transition: 0.3s;
+  opacity: 1;
+}
+.division .side-bar .bottom-content h1 {
+  margin-bottom: 1em;
+  color: #eee;
+  cursor: pointer;
+  font: normal normal normal 20px "Public Sans";
+  opacity: 0.5;
+  transition: 0.3s;
+}
+.division .side-bar .bottom-content h1:hover {
+  font: normal normal bold 20px "Public Sans";
+  transition: 0.3s;
+  opacity: 1;
+}
+.division .content-page {
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.division .content-page .background {
+  position: absolute;
+  width: 75%;
+  height: 100vh;
+  -webkit-clip-path: polygon(100% 0%, 81% 86%, 0% 100%, 0% 0%);
+          clip-path: polygon(100% 0%, 81% 86%, 0% 100%, 0% 0%);
+  background-color: #34353a;
+}
+.division .content-page .presentation {
+  height: 100vh;
+  position: relative;
+}
+.division .content-page .presentation .presentation-container {
+  max-width: 1200px;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0px auto;
+  position: relative;
+}
+.division .content-page .presentation .presentation-container .left-content {
+  margin: 0px auto;
+}
+.division .content-page .presentation .presentation-container .left-content .text h1 {
+  font: normal normal bold 4.5em "Public Sans";
+  color: white;
+}
+.division .content-page .presentation .presentation-container .left-content .text p {
+  font: normal normal bold 1.5em/32px "Public Sans";
+  color: #05b0ff;
+  margin: 0px auto;
+}
+.division .content-page .presentation .presentation-container .left-content .text p b {
+  color: white;
+}
+.division .content-page .presentation .presentation-container .right-content {
+  margin: 0px auto;
+}
+.division .content-page .presentation .presentation-container .right-content img {
+  width: 100%;
+  animation-name: floatingImage;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  animation-direction: alternate;
+}
+@keyframes floatingImage {
+  0% {
+    transform: translateY(-2%);
+  }
+  100% {
+    transform: translateY(2%);
+  }
+}
+.division .content-page .about-me {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+  max-width: 1200px;
+  margin: 0px auto;
+}
+.division .content-page .about-me .content {
+  display: flex;
+  margin-top: 50px;
+  align-items: center;
+  justify-content: center;
+  grid-gap: 110px;
+}
+.division .content-page .about-me .content .left-content p {
+  font: normal normal normal 16px/30px "Public Sans";
+  color: #ddd;
+}
+.division .content-page .about-me .content .left-content p b {
+  color: #05b0ff;
+}
+.division .content-page .about-me .content .right-content .image {
+  width: 350px;
+  height: 350px;
+  position: relative;
+  display: flex;
+}
+.division .content-page .about-me .content .right-content .image img {
+  width: 80%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  margin: 0px auto;
+}
+.division .content-page .about-me .content .right-content .image .animation-image {
+  position: absolute;
+  content: "";
+  top: 24px;
+  bottom: 24px;
+  left: 24px;
+  right: 24px;
+  background: linear-gradient(90deg, #5f5f5f, #c1c1c1);
+  z-index: -1;
+  transform: rotate(-50deg);
+  animation: animationRotate 13s linear 0s infinite alternate;
+}
+@keyframes animationRotate {
+  0% {
+    transform: rotate(-50deg);
+  }
+  100% {
+    transform: rotate(-30deg);
+  }
+}
+.division .content-page .skills {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+  max-width: 1200px;
+  margin: 0px auto;
+}
+.division .content-page .skills .three-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  width: 100%;
+  margin-top: 50px;
+  grid-gap: 1.5rem;
+}
+.division .content-page .skills .three-cards h1 {
+  color: #05b0ff;
+}
+.division .content-page .skills .three-cards .card {
+  padding: 4rem;
+  border-radius: 1rem;
+  background-color: #222;
+}
+.division .content-page .skills .three-cards .card h1 {
+  text-align: center;
+  margin-bottom: 40px;
+  font: normal normal normal 20.8px "Public Sans";
+}
+.division .content-page .skills .three-cards .card .icons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  grid-gap: 10px;
+}
+.division .content-page .skills .three-cards .card .icons .icon {
+  width: 70px;
+  padding: 5px;
+  border-radius: 0.5rem;
+  background-color: #454549;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+}
+.division .content-page .skills .three-cards .card .icons .icon img {
+  width: 40px;
+  height: auto;
+  -o-object-fit: cover;
+     object-fit: cover;
+  margin-bottom: 5px;
+  transition: 0.3s;
+  mix-blend-mode: luminosity;
+}
+.division .content-page .skills .three-cards .card .icons .icon P {
+  padding: 0.5em 0 0;
+  color: white;
+  font: normal normal normal 0.7em "Public Sans";
+}
+.division .content-page .skills .three-cards .card .icons .icon:hover {
+  transition: 0.3s;
+  outline: 1px solid #027dfc;
+  box-shadow: 0 0 10px 1px #027dfc;
+}
+.division .content-page .skills .three-cards .card .icons .icon:hover img {
+  mix-blend-mode: normal;
+  transition: 0.3s;
+}
+.division .content-page .experience {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+  max-width: 1200px;
+  margin: 0px auto;
+}
+.division .content-page .experience .experience-container {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  justify-content: center;
+  background-color: #222;
+  margin-top: 50px;
+}
+.division .content-page .experience .experience-container .jobs,
+.division .content-page .experience .experience-container .studies {
+  border-radius: 10px;
+  padding: 20px 10px;
+}
+.division .content-page .experience .experience-container .jobs .job,
+.division .content-page .experience .experience-container .jobs .study,
+.division .content-page .experience .experience-container .studies .job,
+.division .content-page .experience .experience-container .studies .study {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 40px;
+  background-color: #222;
+}
+.division .content-page .experience .experience-container .jobs .job .line,
+.division .content-page .experience .experience-container .jobs .study .line,
+.division .content-page .experience .experience-container .studies .job .line,
+.division .content-page .experience .experience-container .studies .study .line {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.division .content-page .experience .experience-container .jobs .job .line .separator,
+.division .content-page .experience .experience-container .jobs .study .line .separator,
+.division .content-page .experience .experience-container .studies .job .line .separator,
+.division .content-page .experience .experience-container .studies .study .line .separator {
+  height: 100%;
+  width: 2px;
+  background-color: white;
+}
+.division .content-page .experience .experience-container .jobs .job .line i,
+.division .content-page .experience .experience-container .jobs .study .line i,
+.division .content-page .experience .experience-container .studies .job .line i,
+.division .content-page .experience .experience-container .studies .study .line i {
+  color: white;
+  margin: 15px 0px;
+  font-size: 20px;
+}
+.division .content-page .experience .experience-container .jobs .job .text,
+.division .content-page .experience .experience-container .jobs .study .text,
+.division .content-page .experience .experience-container .studies .job .text,
+.division .content-page .experience .experience-container .studies .study .text {
+  background-color: #454549;
+  border-radius: 10px;
+  padding: 1.5rem 2rem;
+  width: 100%;
+  margin-left: 20px;
+  transition: 0.3s;
+}
+.division .content-page .experience .experience-container .jobs .job .text small,
+.division .content-page .experience .experience-container .jobs .study .text small,
+.division .content-page .experience .experience-container .studies .job .text small,
+.division .content-page .experience .experience-container .studies .study .text small {
+  font: normal normal normal 14px "Public Sans";
+  color: #05b0ff;
+  margin: auto;
+}
+.division .content-page .experience .experience-container .jobs .job .text h1,
+.division .content-page .experience .experience-container .jobs .study .text h1,
+.division .content-page .experience .experience-container .studies .job .text h1,
+.division .content-page .experience .experience-container .studies .study .text h1 {
+  font: normal normal normal 30px "Public Sans";
+  color: white;
+  margin-top: 0px;
+}
+.division .content-page .experience .experience-container .jobs .job .text p,
+.division .content-page .experience .experience-container .jobs .study .text p,
+.division .content-page .experience .experience-container .studies .job .text p,
+.division .content-page .experience .experience-container .studies .study .text p {
+  font: normal normal normal 16px/25px "Public Sans";
+  color: #eee;
+}
+.division .content-page .experience .experience-container .jobs .job .text:hover,
+.division .content-page .experience .experience-container .jobs .study .text:hover,
+.division .content-page .experience .experience-container .studies .job .text:hover,
+.division .content-page .experience .experience-container .studies .study .text:hover {
+  transition: 0.3s;
+  outline: 1px solid #027dfc;
+  box-shadow: 0 0 10px 1px #027dfc;
+}
+.division .content-page .experience .experience-container .jobs .job .text:hover img,
+.division .content-page .experience .experience-container .jobs .study .text:hover img,
+.division .content-page .experience .experience-container .studies .job .text:hover img,
+.division .content-page .experience .experience-container .studies .study .text:hover img {
+  mix-blend-mode: normal;
+  transition: 0.3s;
+}
+.division .content-page .projects {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+  max-width: 1200px;
+  margin: 0px auto;
+  margin-bottom: 200px;
+}
+.division .content-page .projects .projects-cards {
+  display: grid;
+  grid-gap: 2em;
+  grid-row-gap: 50px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  width: 100%;
+  margin-top: 100px;
+}
+.division .content-page .projects .projects-cards .project-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #222;
+  border-radius: 1rem;
+  overflow: hidden;
+  transition: 0.5s;
+}
+.division .content-page .projects .projects-cards .project-card a {
+  width: 100%;
+  height: 100%;
+}
+.division .content-page .projects .projects-cards .project-card a .top-image {
+  width: 380px;
+  height: 200px;
+  overflow: hidden;
+}
+.division .content-page .projects .projects-cards .project-card a .top-image img {
+  width: 100%;
+  max-height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  transition: 0.5s;
+}
+.division .content-page .projects .projects-cards .project-card a .bottom-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.3em;
+}
+.division .content-page .projects .projects-cards .project-card a .bottom-content h1 {
+  font: normal normal normal 20.8px "Public Sans";
+  color: #05b0ff;
+}
+.division .content-page .projects .projects-cards .project-card a .bottom-content p {
+  margin: 1em 0 0;
+  font: normal normal normal 16px/25px "Public Sans";
+  color: white;
+}
+.division .content-page .projects .projects-cards .project-card:hover {
+  outline: 1px solid #027dfc;
+  box-shadow: 0 0 10px 1px #027dfc;
+  transition: 0.5s;
+}
+.division .content-page .projects .projects-cards .project-card:hover a .top-image img {
+  transform: scale(1.2);
+  transition: 0.5s;
+}
+.division .content-page footer {
+  display: flex;
+  background-color: #222;
+  height: 100px;
+  align-items: center;
+  justify-content: center;
+}
+.division .content-page footer small {
+  color: white;
+  font: normal normal bold 1em/30px "Public Sans";
+}
+
+@media screen and (max-width: 1600px) {
+  .section-title h1 {
+    font: normal normal bold 2em "Public Sans";
+  }
+  .mail-button a {
+    font: normal normal bold 1em "Public Sans";
+  }
+  .mail-button i {
+    font-size: 1em !important;
+  }
+  .division {
+    grid-template-columns: 130px auto;
+  }
+  .division .side-bar .top-logo {
+    width: 60px;
+    height: 60px;
+  }
+  .division .side-bar .menu-options span {
+    font: normal normal normal 1em "Public Sans";
+  }
+  .division .side-bar .menu-options span:hover {
+    font: normal normal bold 1em "Public Sans";
+  }
+  .division .side-bar .bottom-content h1 {
+    font: normal normal normal 1.2em "Public Sans";
+  }
+  .division .side-bar .bottom-content h1:hover {
+    font: normal normal bold 1.2em "Public Sans";
+  }
+  .division .content-page .presentation .presentation-container {
+    max-width: 90%;
+  }
+  .division .content-page .presentation .presentation-container .left-content .text h1 {
+    font: normal normal bold 3.5em "Public Sans";
+  }
+  .division .content-page .presentation .presentation-container .left-content .text p {
+    font: normal normal bold 1em/1.6em "Public Sans";
+  }
+  .division .content-page .about-me {
+    max-width: 90%;
+  }
+  .division .content-page .about-me .content {
+    margin-top: 30px;
+    grid-gap: 80px;
+  }
+  .division .content-page .about-me .content .left-content p {
+    font: normal normal normal 1em/2em "Public Sans";
+    margin-bottom: 0;
+  }
+  .division .content-page .about-me .content .right-content .image {
+    width: 250px;
+    height: 250px;
+  }
+  .division .content-page .about-me .content .right-content .image .animation-image {
+    top: 16px;
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+  }
+  .division .content-page .skills {
+    max-width: 90%;
+  }
+  .division .content-page .skills .three-cards .card {
+    padding: 2rem;
+  }
+  .division .content-page .skills .three-cards .card h1 {
+    font: normal normal normal 1.2em "Public Sans";
+  }
+  .division .content-page .skills .three-cards .card .icons .icon img {
+    width: 30px;
+  }
+  .division .content-page .skills .three-cards .card .icons .icon P {
+    font: normal normal normal 0.6em "Public Sans";
+  }
+  .division .content-page .experience {
+    max-width: 90%;
+    margin-bottom: 200px;
+  }
+  .division .content-page .experience .experience-container .jobs,
+  .division .content-page .experience .experience-container .studies {
+    border-radius: 10px;
+    padding: 20px 10px;
+  }
+  .division .content-page .experience .experience-container .jobs .job .text,
+  .division .content-page .experience .experience-container .jobs .study .text,
+  .division .content-page .experience .experience-container .studies .job .text,
+  .division .content-page .experience .experience-container .studies .study .text {
+    padding: 1.5rem 2rem;
+    margin-left: 20px;
+  }
+  .division .content-page .experience .experience-container .jobs .job .text small,
+  .division .content-page .experience .experience-container .jobs .study .text small,
+  .division .content-page .experience .experience-container .studies .job .text small,
+  .division .content-page .experience .experience-container .studies .study .text small {
+    font: normal normal normal 0.9em "Public Sans";
+  }
+  .division .content-page .experience .experience-container .jobs .job .text h1,
+  .division .content-page .experience .experience-container .jobs .study .text h1,
+  .division .content-page .experience .experience-container .studies .job .text h1,
+  .division .content-page .experience .experience-container .studies .study .text h1 {
+    font: normal normal normal 2em "Public Sans";
+  }
+  .division .content-page .experience .experience-container .jobs .job .text p,
+  .division .content-page .experience .experience-container .jobs .study .text p,
+  .division .content-page .experience .experience-container .studies .job .text p,
+  .division .content-page .experience .experience-container .studies .study .text p {
+    font: normal normal normal 1.2em/1.3em "Public Sans";
+  }
+  .division .content-page .projects {
+    max-width: 90%;
+    margin-bottom: 150px;
+  }
+  .division .content-page .projects .projects-cards {
+    width: 100%;
+    margin-top: 50px;
+  }
+  .division .content-page .projects .projects-cards .project-card a .bottom-content {
+    padding: 1.3em;
+  }
+  .division .content-page .projects .projects-cards .project-card a .bottom-content h1 {
+    font: normal normal normal 1.3em "Public Sans";
+    margin-bottom: 0px;
+  }
+  .division .content-page .projects .projects-cards .project-card a .bottom-content p {
+    font: normal normal normal 1.1em/1.5em "Public Sans";
+  }
+  .division .content-page footer {
+    height: 90px;
+  }
+  .division .content-page footer small {
+    font: normal normal bold 0.9em "Public Sans";
+  }
+}
+@media screen and (max-width: 1099px) {
+  .mobile-hamburger {
+    display: block;
+  }
+  .mail-button {
+    margin: 0px auto;
+  }
+  .division {
+    grid-template-columns: auto;
+  }
+  .division .side-bar {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: -1100px;
+    z-index: 9;
+  }
+  .division .side-bar .top-logo {
+    width: 90px;
+    height: 90px;
+  }
+  .division .side-bar .menu-options span {
+    font: normal normal normal 2em "Public Sans";
+    padding: 0.5em;
+  }
+  .division .side-bar .menu-options span:hover {
+    font: normal normal bold 2em "Public Sans";
+  }
+  .division .side-bar .bottom-content h1 {
+    font: normal normal normal 1.5em "Public Sans";
+  }
+  .division .side-bar .bottom-content h1:hover {
+    font: normal normal bold 1.5em "Public Sans";
+  }
+  .division .content-page .presentation {
+    height: auto;
+  }
+  .division .content-page .presentation .presentation-container {
+    grid-template-columns: auto;
+    padding: 100px 0px;
+  }
+  .division .content-page .presentation .presentation-container .left-content .text h1 {
+    font: normal normal bold 3.5em "Public Sans";
+  }
+  .division .content-page .presentation .presentation-container .left-content .text p {
+    font: normal normal bold 1em/1.6em "Public Sans";
+  }
+  .division .content-page .about-me {
+    height: auto;
+    padding: 100px 0;
+  }
+  .division .content-page .about-me .content {
+    flex-direction: column;
+    margin: 30px auto;
+  }
+  .division .content-page .about-me .content .left-content p {
+    font: normal normal normal 1em/2em "Public Sans";
+    margin-bottom: 0;
+  }
+  .division .content-page .skills {
+    height: auto;
+    padding: 100px 0;
+  }
+  .division .content-page .skills .three-cards {
+    grid-template-columns: auto;
+  }
+  .division .content-page .experience {
+    height: auto;
+    padding: 100px 0;
+  }
+  .division .content-page .experience .experience-container {
+    grid-template-columns: auto;
+  }
+  .division .content-page .experience .experience-container .jobs,
+  .division .content-page .experience .experience-container .studies {
+    padding: 20px 25px;
+  }
+  .division .content-page .projects {
+    height: auto;
+    padding: 100px 0;
+  }
+  .division .content-page .projects .projects-cards {
+    grid-template-columns: auto;
+  }
+  .division .content-page .projects .projects-cards .project-card a .top-image {
+    width: auto;
+    height: auto;
+  }
+  .division .content-page .projects .projects-cards .project-card a .bottom-content {
+    padding: 1.3em;
+  }
+  .division .content-page .projects .projects-cards .project-card a .bottom-content h1 {
+    font: normal normal normal 1.3em "Public Sans";
+    margin-bottom: 0px;
+  }
+  .division .content-page .projects .projects-cards .project-card a .bottom-content p {
+    font: normal normal normal 1.1em/1.5em "Public Sans";
+  }
+  .division .content-page footer {
+    height: 90px;
+  }
+  .division .content-page footer small {
+    font: normal normal bold 0.9em "Public Sans";
+  }
+}/*# sourceMappingURL=style.css.map */
