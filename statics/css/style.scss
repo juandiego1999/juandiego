@@ -1,85 +1,238 @@
-@import '../fonts/public-sans/public-sans.css';
+@import '../fonts/poppins/poppins.css';
 
-$fontPublicSans: 'Public Sans';
+$fontPoppins: 'Poppins',
+sans-serif;
+
+// Background tema oscuro
+$backgroudDarkColor1: #555b5e;
+$backgroudDarkColor2: #494e50;
+$backgroudDarkColor3: #394246;
+$backgroudDarkColor4: #2e3538;
+
+$blueDarkColor1: #1481b8;
+
+$textDarkColor1: #929fa5;
+$textDarkColor2: #b6c2c9;
+// Background tema oscuro
+
+// Background tema claro
+$backgroudLightColor1: #dfe8ec;
+$backgroudLightColor2: #fcfdfd;
+$backgroudLightColor3: #e7ecef;
+$backgroudLightColor4: #d1dbe0;
+
+$blueLightColor1: #00aaff;
+
+$textLightColor1: #365463;
+$textLightColor2: #002233;
+// Background tema claro
+
+$lightRed: #ff5656;
+$opaqueRed: #713e3e;
+$whiteColor: #ffffff;
+$opaqueWhite: #fcfcfc;
 $darkGrey: #222;
 $lightGrey: #777;
+$lightGreyOpacity: #77777721;
 $opaqueWhite: #eee;
 $mainBlue: #027dfc;
 $lightBlue: #05b0ff;
+$opaqueBlue: #003a54;
 $gradientRed: linear-gradient(90deg, #f29871, #ff4d4d);
 $gradientGray: linear-gradient(90deg, #5f5f5f, #c1c1c1);
 
+// Cofiguraciones en general
+html,
 body {
-    background-image: url(../images/background.png) !important;
-    background-color: #16171b !important;
+    height: 100%;
+    overflow: hidden;
 }
 
-//Generales inicio
-.section-title {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    h1 {
-        font: normal normal bold 3em $fontPublicSans;
-        text-align: center;
-        color: white;
-    }
+html {
+    -webkit-text-size-adjust: 100%;
+    font-size: 0.83vw;
+    line-height: 1.15;
 }
 
+body {
+    background-color: #16171b;
+    margin: 0;
+    padding: 0;
+    min-width: 320px;
+    font-family: $fontPoppins;
+}
 
-.mail-button {
-    display: flex;
-    align-items: center;
-    grid-gap: 10px;
-    padding: 1em;
-    border-radius: 5px;
-    width: fit-content;
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
     cursor: pointer;
-    transition: .3s;
-    background-color: transparent;
-    box-shadow: inset 0 0 0 1px $mainBlue;
+    border-radius: 5px;
+    background: #00000040; //#cccccc40
+    -webkit-transition: color .2s ease;
+    transition: color .2s ease;
+}
 
-    a {
-        color: white !important;
-        font: normal normal bold 1.2em $fontPublicSans;
-        text-decoration: none !important;
+::-webkit-scrollbar-thumb:hover {
+    background: #80878bcc;
+}
+
+::-webkit-scrollbar-track {
+    background: #0000001a;
+    border-radius: 0;
+}
+
+.noise {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.035;
+    z-index: 20;
+    pointer-events: none;
+    background-image: url(../images/noise.gif);
+}
+
+.loader-element {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+
+    &:nth-child(1) {
+        animation-delay: -0.45s;
     }
 
-    i {
-        color: white !important;
-        font-size: 20px !important;
-        margin: 0px auto !important;
+    &:nth-child(2) {
+        animation-delay: -0.3s;
     }
 
+    &:nth-child(3) {
+        animation-delay: -0.15s;
+    }
 
-    &:hover {
-        transition: .3s;
-        background-color: $lightGrey;
+    div {
+        box-sizing: border-box;
+        display: block;
+        position: absolute;
+        width: 64px;
+        height: 64px;
+        margin: 8px;
+        border: 8px solid #fff;
+        border-radius: 50%;
+        animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+        border-color: #fff transparent transparent transparent;
     }
 }
 
-//Generales fin
-.mobile-hamburger {
-    position: fixed;
-    right: 5vw;
-    top: 2vw;
-    display: none;
-    z-index: 10;
+@keyframes lds-ring {
+    0% {
+        transform: rotate(0deg);
+    }
 
-    img {
-        width: 40px;
-        height: 40px;
-        object-fit: cover;
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.loader {
+    background-color: $opaqueBlue;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    clip-path: circle(141.2% at 100% 0);
+    transition: clip-path .3s ease-in-out;
+}
+
+.close-loader {
+    clip-path: circle(0.0% at 100% 0);
+    transition: clip-path .3s ease-in-out;
+}
+
+.section-title {
+    font: normal normal bold 3em $fontPoppins;
+    text-align: center;
+    color: $whiteColor;
+}
+
+.section-container {
+    margin-top: 4rem;
+}
+
+.hamburguer {
+    position: fixed;
+    z-index: 3;
+    right: 5%;
+    top: 3%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 32px;
+    border-radius: 50px;
+    cursor: pointer;
+
+    span::after,
+    span::before,
+    span {
+        background-color: $whiteColor;
+        width: 100%;
+        height: 3px;
+        border-radius: 2px;
+        transition: 0.3s;
+    }
+
+    span {
+
+        &::before,
+        &::after {
+            content: '';
+            position: absolute;
+            display: block;
+        }
+
+        &::before {
+            top: 0;
+        }
+
+        &::after {
+            bottom: 0;
+        }
+    }
+}
+
+
+.active-hamburguer {
+    span {
+        background-color: transparent;
+
+        &::before {
+            top: 50%;
+            transform: rotate(135deg);
+        }
+
+        &::after {
+            top: 50%;
+            transform: rotate(-135deg);
+        }
     }
 }
 
 .division {
-    display: grid;
-    grid-template-columns: 150px auto;
-    width: 100%;
     max-width: 1920px;
+    min-width: 260px;
     margin: 0px auto;
+    width: 100%;
 
     .side-bar {
         background-color: $darkGrey;
@@ -87,7 +240,12 @@ body {
         flex-direction: column;
         align-items: center;
         justify-content: space-between;
+        position: fixed;
         padding: 5em 1em 1em 1em;
+        z-index: 2;
+        width: 100%;
+        height: 100%;
+        left: -110%;
 
         .top-logo {
             width: 80px;
@@ -110,12 +268,12 @@ body {
                 padding: 1em 0em;
                 color: $opaqueWhite;
                 cursor: pointer;
-                font: normal normal normal 16px $fontPublicSans;
+                font: normal normal normal 16px $fontPoppins;
                 opacity: .5;
                 transition: .3s;
 
                 &:hover {
-                    font: normal normal bold 16px $fontPublicSans;
+                    font: normal normal bold 16px $fontPoppins;
                     transition: .3s;
                     opacity: 1;
                 }
@@ -127,12 +285,12 @@ body {
                 margin-bottom: 1em;
                 color: $opaqueWhite;
                 cursor: pointer;
-                font: normal normal normal 20px $fontPublicSans;
+                font: normal normal normal 20px $fontPoppins;
                 opacity: .5;
                 transition: .3s;
 
                 &:hover {
-                    font: normal normal bold 20px $fontPublicSans;
+                    font: normal normal bold 20px $fontPoppins;
                     transition: .3s;
                     opacity: 1;
                 }
@@ -143,125 +301,198 @@ body {
 
     .content-page {
         height: 100vh;
+        padding: 2rem 21rem;
         overflow-y: auto;
-        overflow-x: hidden;
+        margin: 0px auto;
 
-        .background {
-            position: absolute;
-            width: 75%;
-            height: 100vh;
-            clip-path: polygon(100% 0%, 81% 86%, 0% 100%, 0% 0%);
-            background-color: #34353a;
-        }
+        .home-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            grid-template-rows: repeat(4, 1fr);
+            margin: 0 auto;
+            grid-gap: 1rem;
 
-        .presentation {
-            height: 100vh;
-            position: relative;
+            .offline {
+                background-color: $lightGreyOpacity;
+                transition: background-color 0.3s ease;
 
-            .presentation-container {
-                max-width: 1200px;
-                height: 100%;
-                display: grid;
-                grid-template-columns: 50% 50%;
-                align-items: center;
-                justify-content: space-between;
-                margin: 0px auto;
-                position: relative;
+                p,
+                svg {
+                    font: normal normal normal 2rem/32px $fontPoppins;
+                    color: $textDarkColor2;
+                }
+            }
 
-                .left-content {
-                    margin: 0px auto;
+            .online {
+                background-color: $opaqueBlue;
+                transition: background-color 0.3s ease;
 
-                    .text {
+                p,
+                svg {
+                    font: normal normal normal 2rem/32px $fontPoppins;
+                    color: #6adbc6;
+                    animation: onlineTextAnimation 3s infinite;
+                }
+            }
+
+            @keyframes onlineTextAnimation {
+                0% {
+                    color: #00cca6;
+                    transform: scale(1);
+                }
+
+                50% {
+                    color: #6adbc6;
+                    transform: scale(1.05);
+                }
+
+                100% {
+                    color: #00cca6;
+                    transform: scale(1);
+                }
+            }
+
+            .item {
+                border-radius: 10px;
+                overflow: hidden;
+                padding: 1rem;
+                transition: 0.3s;
+
+                &:hover {
+                    transition: .3s;
+                }
+
+                &:nth-child(1) {
+                    position: relative;
+                    grid-row: span 2;
+                    grid-column: span 3;
+                    background-color: $blueDarkColor1;
+
+                    &:hover {
+                        outline: 1px solid $mainBlue;
+                        box-shadow: 0 0 10px 1px $mainBlue;
+                    }
+
+                    .description {
+                        position: absolute;
+                        max-width: 600px;
+                        left: 2rem;
+                        bottom: 0;
+                        color: $whiteColor;
+
                         h1 {
-                            font: normal normal bold 4.5em $fontPublicSans;
-                            color: white;
+                            font: normal normal bold 2.5em $fontPoppins;
                         }
 
                         p {
-                            font: normal normal bold 1.5em/32px $fontPublicSans;
-                            color: $lightBlue;
-                            margin: 0px auto;
+                            font: normal normal normal 1.3em/32px $fontPoppins;
 
-                            b {
-                                color: white;
+                            i {
+                                color: $opaqueWhite;
                             }
                         }
                     }
-                }
 
-                .right-content {
-                    margin: 0px auto;
-
-                    img {
-                        width: 100%;
-                        animation-name: floatingImage;
-                        animation-duration: 2s;
-                        animation-iteration-count: infinite;
-                        animation-timing-function: ease-in-out;
-                        animation-direction: alternate;
-
-                        @keyframes floatingImage {
-                            0% {
-                                transform: translateY(-2%)
-                            }
-
-                            100% {
-                                transform: translateY(2%)
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        .about-me {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            min-height: 100vh;
-            max-width: 1200px;
-            margin: 0px auto;
-
-            .content {
-                display: flex;
-                margin-top: 50px;
-                align-items: center;
-                justify-content: center;
-                grid-gap: 110px;
-
-                .left-content {
-                    p {
-                        font: normal normal normal 16px/30px $fontPublicSans;
-                        color: #ddd;
-
-                        b {
-                            color: $lightBlue;
-                        }
-                    }
-
-                }
-
-                .right-content {
-                    .image {
-                        width: 350px;
-                        height: 350px;
-                        position: relative;
-                        display: flex;
+                    .floating-image {
+                        position: absolute;
+                        width: 20rem;
+                        right: 0;
+                        top: 0;
 
                         img {
-                            width: 80%;
-                            height: 100%;
-                            object-fit: cover;
-                            margin: 0px auto;
+                            width: 100%;
+                            animation: floatingImage 2s infinite alternate ease-in-out;
+                        }
+                    }
+
+                    @keyframes floatingImage {
+                        0% {
+                            transform: translateY(-2%);
+                        }
+
+                        100% {
+                            transform: translateY(2%);
+                        }
+                    }
+                }
+
+
+                &:nth-child(2),
+                &:nth-child(3) {
+                    display: flex;
+                    align-items: center;
+                    flex-direction: column;
+                    justify-content: center;
+                    text-decoration: none;
+                    background-color: $opaqueRed;
+                    aspect-ratio: 1/1;
+
+                    &:hover {
+                        outline: 1px solid $lightRed;
+                        box-shadow: 0 0 10px 1px $lightRed;
+
+
+                        h2,
+                        svg {
+                            transform: scale(1.1);
+                            transition: .3s;
+                            color: $opaqueWhite;
+                        }
+                    }
+
+                    h2,
+                    svg {
+                        color: $textDarkColor2;
+                        transition: .3s;
+                    }
+
+                    h2 {
+                        font: normal normal bold 2rem $fontPoppins;
+                        margin: 0 auto;
+                    }
+
+                    svg {
+                        font-size: 10rem;
+                    }
+                }
+
+                &:nth-child(4) {
+                    position: relative;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background-color: $darkGrey;
+                    aspect-ratio: 1/1;
+
+                    &:hover {
+                        outline: 1px solid $opaqueWhite;
+                        box-shadow: 0 0 10px 1px $opaqueWhite;
+                        transition: 0.3s;
+
+                        span {
+                            bottom: 2rem;
+                            transition: 0.3s;
+                        }
+                    }
+
+                    .image {
+                        position: relative;
+                        display: flex;
+                        width: 16rem;
+                        height: 16rem;
+                        z-index: 1;
+
+                        img {
+                            margin: 0 auto;
                         }
 
                         .animation-image {
                             position: absolute;
                             content: "";
-                            top: 24px;
-                            bottom: 24px;
-                            left: 24px;
-                            right: 24px;
+                            top: 1.5rem;
+                            bottom: 1.5rem;
+                            left: 1.5rem;
+                            right: 1.5rem;
                             background: $gradientGray;
                             z-index: -1;
                             transform: rotate(-50deg);
@@ -278,39 +509,105 @@ body {
                             }
                         }
                     }
-                }
-            }
-        }
 
-        .skills {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            min-height: 100vh;
-            max-width: 1200px;
-            margin: 0px auto;
-
-            .three-cards {
-                display: grid;
-                grid-template-columns: 1fr 1fr 1fr;
-                width: 100%;
-                margin-top: 50px;
-                grid-gap: 1.5rem;
-
-                h1 {
-                    color: $lightBlue;
-                }
-
-                .card {
-                    padding: 4rem;
-                    border-radius: 1rem;
-                    background-color: $darkGrey;
-
-                    h1 {
-                        text-align: center;
-                        margin-bottom: 40px;
-                        font: normal normal normal 20.8px $fontPublicSans;
+                    span {
+                        position: absolute;
+                        display: flex;
+                        z-index: 2;
+                        align-items: center;
+                        bottom: -5rem;
+                        padding: 1em;
+                        border-radius: 5px;
+                        background-color: $lightGrey;
+                        font: normal normal normal 1.2em $fontPoppins;
+                        color: $whiteColor;
+                        transition: 0.3s;
                     }
+                }
+
+
+                &:nth-child(5) {
+                    background-color: $opaqueRed;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    aspect-ratio: 1/1;
+
+                    &:hover {
+                        outline: 1px solid $lightRed;
+                        box-shadow: 0 0 10px 1px $lightRed;
+                    }
+
+                    .description {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+
+                        h1 {
+                            color: $textDarkColor2;
+                            font: normal normal bold 5rem/1rem $fontPoppins;
+                            margin: 0;
+                        }
+
+                        h3 {
+                            color: $textDarkColor2;
+                            font: normal normal normal 2rem/7rem $fontPoppins;
+                            margin: 0;
+                        }
+                    }
+                }
+
+                &:nth-child(6) {
+                    position: relative;
+                    grid-column: span 2;
+                    background-color: $opaqueBlue;
+                    padding: 0;
+                    cursor: pointer;
+
+                    &:hover {
+                        outline: 1px solid $mainBlue;
+                        box-shadow: 0 0 10px 1px $mainBlue;
+                    }
+
+                    .description {
+                        position: absolute;
+                        color: $whiteColor;
+                        top: 1rem;
+                        left: 2rem;
+
+                        h1 {
+                            font: normal normal bold 2.5em $fontPoppins;
+                            margin: 0;
+                        }
+
+                        p {
+                            font: normal normal normal 1.5em/32px $fontPoppins;
+                            margin: 0;
+                        }
+                    }
+
+                    img {
+                        position: absolute;
+                        object-fit: cover;
+                        height: 100%;
+                        width: 100%;
+                        opacity: 0.4;
+                    }
+                }
+
+
+                &:nth-child(7),
+                &:nth-child(8) {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    position: relative;
+                    grid-column: span 2;
+                    padding: 0;
+                }
+
+                &:nth-child(7) {
+                    background-color: $darkGrey;
 
                     .icons {
                         display: flex;
@@ -318,209 +615,540 @@ body {
                         justify-content: center;
                         grid-gap: 10px;
 
-                        .icon {
-                            width: 70px;
-                            padding: 5px;
-                            border-radius: 0.5rem;
-                            background-color: #454549;
+                        div {
+                            width: 3rem;
                             display: flex;
-                            flex-direction: column;
                             align-items: center;
                             justify-content: center;
-                            transition: .3s;
-
-                            img {
-                                width: 40px;
-                                height: auto;
-                                object-fit: cover;
-                                margin-bottom: 5px;
-                                transition: .3s;
-                                mix-blend-mode: luminosity;
-
-                            }
-
-                            P {
-                                padding: 0.5em 0 0;
-                                color: white;
-                                font: normal normal normal .7em $fontPublicSans;
-                            }
+                            background-color: #454549;
+                            transition: 0.3s;
+                            padding: 1rem;
+                            border-radius: 10px;
 
                             &:hover {
-                                transition: .3s;
                                 outline: 1px solid $mainBlue;
                                 box-shadow: 0 0 10px 1px $mainBlue;
 
                                 img {
                                     mix-blend-mode: normal;
-                                    transition: .3s;
+                                    transition: 0.3s;
                                 }
                             }
+
+                            img {
+                                width: 100%;
+                                transition: 0.3s;
+                                object-fit: cover;
+                            }
                         }
+                    }
+                }
+
+                &:nth-child(8) {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-direction: column;
+                    grid-column: span 2;
+
+                    .avatar-discord {
+                        width: 170px;
+                        height: 170px;
+                        border-radius: 100px;
+                        transition: opacity 0.3s ease;
+                    }
+
+                    .text-container {
+                        display: flex;
+                        align-items: center;
+                        gap: 1rem;
                     }
                 }
             }
         }
 
-        .experience {
+        .education {
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            min-height: 100vh;
-            max-width: 1200px;
-            margin: 0px auto;
+            align-items: center;
+            background-color: $blueDarkColor1;
+            border-radius: 0.5rem;
+            padding: 0 0 3rem 0;
 
-            .experience-container {
+            .education-container {
                 display: grid;
-                grid-template-columns: 50% 50%;
-                justify-content: center;
-                background-color: $darkGrey;
-                margin-top: 50px;
+                grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+                grid-gap: 1rem;
 
-                .jobs,
-                .studies {
-                    border-radius: 10px;
-                    padding: 20px 10px;
+                .education-card {
+                    background-color: $backgroudDarkColor4;
+                    border-radius: 0.5rem;
+                    padding: 1.5rem 2rem;
 
-                    .job,
-                    .study {
-                        display: flex;
-                        justify-content: space-around;
-                        margin-top: 40px;
-                        background-color: $darkGrey;
+                    small {
+                        font: normal italic normal 0.9rem $fontPoppins;
+                        color: $textDarkColor1;
+                        margin: auto;
+                    }
 
+                    h1 {
+                        font: normal normal normal 1.5rem $fontPoppins;
+                        color: $textDarkColor2;
+                        margin-top: 0px;
+                    }
+                }
 
-                        .line {
-                            display: flex;
-                            flex-direction: column;
-                            align-items: center;
+            }
+        }
 
-                            .separator {
-                                height: 100%;
-                                width: 2px;
-                                background-color: white;
-                            }
+        .experience {
+            border-radius: 0.5rem;
+            background: url(../images/backgroud-timeline.jpg) no-repeat center fixed;
+            background-size: cover;
+            padding: 1rem 10rem;
+            position: relative;
+            overflow: hidden;
 
-                            i {
-                                color: white;
-                                margin: 15px 0px;
-                                font-size: 20px;
-                            }
+            .section-title {
+                position: relative;
+            }
+
+            &:before {
+                content: '';
+                background-color: #000000b3;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
+
+            .checkpoint {
+                max-width: 27em;
+                padding-top: 2em;
+                padding-bottom: 2em;
+                position: relative;
+
+                &:nth-child(odd)::before,
+                &:nth-child(even)::before {
+                    content: '';
+                    background-color: $textDarkColor2;
+                    width: 3rem;
+                    height: 3px;
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+                }
+
+                &:nth-child(odd) {
+                    border-left: 2px solid $textDarkColor2;
+                    padding-left: 3rem;
+                    transform: translateX(30rem);
+
+                    &::before {
+                        left: 0;
+                    }
+
+                    div {
+                        &::before {
+                            left: -0.5rem;
                         }
+                    }
+                }
 
-                        .text {
-                            background-color: #454549;
-                            border-radius: 10px;
-                            padding: 1.5rem 2rem;
-                            width: 100%;
-                            margin-left: 20px;
-                            transition: .3s;
+                &:nth-child(even) {
+                    border-right: 2px solid $textDarkColor2;
+                    padding-right: 3rem;
 
-                            small {
-                                font: normal normal normal 14px $fontPublicSans;
-                                color: $lightBlue;
-                                margin: auto;
-                            }
+                    &::before {
+                        right: 0;
+                    }
 
-                            h1 {
-                                font: normal normal normal 30px $fontPublicSans;
-                                color: white;
-                                margin-top: 0px;
-                            }
-
-                            p {
-                                font: normal normal normal 16px/25px $fontPublicSans;
-                                color: $opaqueWhite;
-                            }
-
-                            &:hover {
-                                transition: .3s;
-                                outline: 1px solid $mainBlue;
-                                box-shadow: 0 0 10px 1px $mainBlue;
-
-                                img {
-                                    mix-blend-mode: normal;
-                                    transition: .3s;
-                                }
-                            }
+                    div {
+                        &::before {
+                            right: -0.5rem;
                         }
+                    }
+                }
+
+
+                div {
+                    border: 2px solid $textDarkColor2;
+                    border-radius: .5rem;
+                    padding: 1rem;
+                    transition: .5s;
+                    cursor: pointer;
+
+                    &:hover {
+                        background-color: $blueDarkColor1;
+                        transition: .5s;
+                    }
+
+                    &::before {
+                        content: '';
+                        background-color: $blueDarkColor1;
+                        border: 2px solid $textDarkColor2;
+                        box-shadow: 0 0 0.5rem $blueDarkColor1;
+                        width: 0.8rem;
+                        height: 0.8rem;
+                        position: absolute;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        border-radius: 100px;
+                    }
+
+                    h3 {
+                        font: normal normal bold 1.2rem $fontPoppins;
+                        margin: 0.5rem auto 0.2rem auto;
+                        color: $opaqueWhite;
+                    }
+
+                    span {
+                        font: normal italic 500 1.1rem $fontPoppins;
+                        color: $textDarkColor2;
+                    }
+
+                    p {
+                        font: normal normal normal 0.9rem $fontPoppins;
+                        color: $textDarkColor2;
+                        margin-top: 1.5rem;
                     }
                 }
             }
         }
 
         .projects {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            min-height: 100vh;
-            max-width: 1200px;
-            margin: 0px auto;
-            margin-bottom: 200px;
+            background-color: $backgroudDarkColor4;
+            padding: 1rem 0 5rem 0;
+            height: 55rem;
 
             .projects-cards {
                 display: grid;
-                grid-gap: 2em;
-                grid-row-gap: 50px;
-                grid-template-columns: repeat(3, 1fr);
-                grid-template-rows: repeat(2, 1fr);
-                width: 100%;
-                margin-top: 100px;
+                justify-content: center;
+                grid-template-columns: repeat(auto-fill, minmax(0, 20rem));
+                grid-gap: 1rem;
 
                 .project-card {
-                    height: 100%;
-                    display: flex;
-                    flex-direction: column;
-                    background-color: $darkGrey;
+                    position: relative;
                     border-radius: 1rem;
                     overflow: hidden;
                     transition: .5s;
+                    background-color: $darkGrey;
 
-                    a {
-                        width: 100%;
-                        height: 100%;
+                    .top-image {
+                        aspect-ratio: 1/1;
 
-                        .top-image {
-                            width: 380px;
-                            height: 200px;
-                            overflow: hidden;
+                        img {
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                            transition: height 0.3s ease;
+                        }
+                    }
 
-                            img {
-                                width: 100%;
-                                max-height: 100%;
-                                object-fit: cover;
-                                transition: .5s;
+                    .bottom-content {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        padding: 1.3em;
+                        position: absolute;
+                        height: fit-content;
+                        bottom: -100%;
+                        transition: .5s;
+
+                        h1 {
+                            a {
+                                display: flex;
+                                align-items: center;
+                                gap: 0.5rem;
+                                font: normal normal normal 1rem $fontPoppins;
+                                color: $lightBlue;
+                                text-decoration: none;
                             }
                         }
 
-                        .bottom-content {
+                        .technologies {
                             display: flex;
-                            flex-direction: column;
-                            justify-content: space-between;
-                            padding: 1.3em;
+                            flex-wrap: wrap;
+                            gap: 0.1rem 0.2rem;
 
-                            h1 {
-                                font: normal normal normal 20.8px $fontPublicSans;
-                                color: $lightBlue;
-                            }
-
-                            p {
-                                margin: 1em 0 0;
-                                font: normal normal normal 16px/25px $fontPublicSans;
-                                color: white;
+                            span {
+                                padding: 0.3rem 0.7rem;
+                                font: normal normal normal 0.7rem $fontPoppins;
+                                color: $whiteColor;
+                                background-color: $lightGreyOpacity;
+                                border-radius: 0.5rem;
                             }
                         }
                     }
+
 
                     &:hover {
                         outline: 1px solid $mainBlue;
                         box-shadow: 0 0 10px 1px $mainBlue;
                         transition: .5s;
 
-                        a {
-                            .top-image {
-                                img {
-                                    transform: scale(1.2);
-                                    transition: .5s;
+                        .top-image {
+                            img {
+                                height: 50%;
+                                transition: height 0.3s ease;
+                                transition: .5s;
+                            }
+                        }
+
+                        .bottom-content {
+                            bottom: 1rem;
+                            transition: bottom .5s;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    footer {
+        text-align: center;
+        height: 8rem;
+
+        small {
+            font: normal normal bold 1em/30px $fontPoppins;
+            color: $whiteColor;
+        }
+    }
+}
+
+@media screen and (max-width: 1279px) {
+    .hamburguer {
+        display: flex;
+    }
+
+    .division {
+        .experience {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .checkpoint {
+
+                &:nth-child(odd),
+                &:nth-child(even) {
+                    transform: none;
+                    padding-right: 0;
+                    padding-left: 0;
+                    border: none;
+
+                    &::before {
+                        width: 3px;
+                        height: 4rem;
+                        top: -2rem;
+                        left: 50%;
+                        transform: translateX(-50%);
+                    }
+
+                    div {
+                        &::before {
+                            top: -0.5rem;
+                            left: 50%;
+                            transform: translateX(-50%);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 1024px) and (max-width: 1279px) {
+    .division {
+        .content-page {
+            padding: 2rem;
+
+            .home-grid {
+                grid-template-rows: repeat(3, 1fr);
+
+                .offline {
+
+                    p,
+                    svg {
+                        font: normal normal normal 3rem $fontPoppins;
+                    }
+                }
+
+                .online {
+
+                    p,
+                    svg {
+                        font: normal normal normal 3rem $fontPoppins;
+                    }
+                }
+
+                .item {
+                    &:nth-child(1) {
+                        grid-row: span 1;
+                        grid-column: span 4;
+
+                        .description {
+                            top: 3rem;
+                            left: 5rem;
+
+                            h1 {
+                                font: normal normal bold 2.5rem $fontPoppins;
+                                margin-bottom: 0;
+                            }
+
+                            p {
+                                font: normal normal normal 1.7rem $fontPoppins;
+                                margin-top: 1rem;
+                            }
+                        }
+
+                        .floating-image {
+                            width: 25rem;
+                            right: 10rem;
+                        }
+                    }
+
+
+                    &:nth-child(2),
+                    &:nth-child(3) {
+
+                        h2 {
+                            font: normal normal bold 2.5rem $fontPoppins;
+                        }
+
+                        svg {
+                            font-size: 13rem;
+                        }
+                    }
+
+                    &:nth-child(4) {
+                        .image {
+                            width: 23rem;
+                            height: 23rem;
+                        }
+                    }
+
+
+                    &:nth-child(5) {
+                        .description {
+                            h1 {
+                                font: normal normal bold 10rem/10rem $fontPoppins;
+                            }
+
+                            h3 {
+                                font: normal normal normal 3rem $fontPoppins;
+                            }
+                        }
+                    }
+
+                    &:nth-child(6) {
+                        .description {
+                            h1 {
+                                font: normal normal bold 3rem $fontPoppins;
+                            }
+
+                            p {
+                                font: normal normal normal 2rem $fontPoppins;
+                            }
+                        }
+                    }
+
+                    &:nth-child(7) {
+                        .icons {
+                            max-width: 50rem;
+
+                            div {
+                                width: 5rem;
+                            }
+                        }
+                    }
+
+                    &:nth-child(8) {
+                        height: 10rem;
+                        grid-column: span 4;
+                    }
+                }
+            }
+
+            .education {
+                .education-container {
+                    grid-template-columns: 50% 50%;
+
+                    .education-card {
+                        padding: 3.5rem 4rem;
+
+                        small {
+                            font: normal italic normal 1.5rem $fontPoppins;
+                        }
+
+                        h1 {
+                            font: normal normal normal 2rem $fontPoppins;
+                        }
+                    }
+
+                }
+            }
+
+            .experience {
+                .checkpoint {
+                    max-width: 60rem;
+
+                    &:nth-child(odd),
+                    &:nth-child(even) {
+                        width: 100%;
+                        transform: none;
+                        padding-right: 0;
+                        padding-left: 0;
+                        border: none;
+
+                        &::before {
+                            width: 3px;
+                            height: 4rem;
+                            top: -2rem;
+                            left: 50%;
+                            transform: translateX(-50%);
+                        }
+
+                        div {
+                            &::before {
+                                top: -0.5rem;
+                                left: 50%;
+                                transform: translateX(-50%);
+                            }
+
+                            h3 {
+                                font: normal normal bold 1.7rem $fontPoppins;
+                            }
+
+                            span {
+                                font: normal italic 500 1.6rem $fontPoppins;
+                            }
+
+                            p {
+                                font: normal normal normal 1.5rem $fontPoppins;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .projects {
+                height: 65rem;
+
+                .projects-cards {
+                    grid-template-columns: repeat(auto-fill, minmax(0, 25rem));
+
+                    .project-card {
+                        .bottom-content {
+                            h1 {
+                                a {
+                                    font: normal normal normal 1.7rem $fontPoppins;
+                                }
+                            }
+
+                            .technologies {
+                                span {
+                                    font: normal normal normal 1rem $fontPoppins;
                                 }
                             }
                         }
@@ -530,172 +1158,177 @@ body {
         }
 
         footer {
-            display: flex;
-            background-color: $darkGrey;
-            height: 100px;
-            align-items: center;
-            justify-content: center;
-
             small {
-                color: white;
-                font: normal normal bold 1em/30px $fontPublicSans;
+                font: normal normal bold 1.5em $fontPoppins;
             }
         }
     }
 }
 
-@media screen and (max-width: 1600px) {
-
-    .section-title {
-        h1 {
-            font: normal normal bold 2em $fontPublicSans;
-        }
-    }
-
-    .mail-button {
-        a {
-            font: normal normal bold 1em $fontPublicSans;
-        }
-
-        i {
-            font-size: 1em !important;
-        }
-    }
+@media (min-width: 768px) and (max-width: 1023px) {
 
     .division {
-        grid-template-columns: 130px auto;
-
-        .side-bar {
-            .top-logo {
-                width: 60px;
-                height: 60px;
-            }
-
-            .menu-options {
-                span {
-                    font: normal normal normal 1em $fontPublicSans;
-
-                    &:hover {
-                        font: normal normal bold 1em $fontPublicSans;
-                    }
-                }
-            }
-
-            .bottom-content {
-                h1 {
-                    font: normal normal normal 1.2em $fontPublicSans;
-
-                    &:hover {
-                        font: normal normal bold 1.2em $fontPublicSans;
-                    }
-                }
-            }
-        }
-
         .content-page {
-            .presentation {
-                .presentation-container {
-                    max-width: 90%;
+            padding: 2rem;
 
-                    .left-content {
-                        .text {
+            .home-grid {
+                grid-template-rows: repeat(4, 1fr);
+
+                .offline {
+
+                    p,
+                    svg {
+                        font: normal normal normal 3rem $fontPoppins;
+                    }
+                }
+
+                .online {
+
+                    p,
+                    svg {
+                        font: normal normal normal 3rem $fontPoppins;
+                    }
+                }
+
+                .item {
+                    &:nth-child(1) {
+                        grid-column: span 4;
+
+                        .description {
+                            max-width: 70%;
+
                             h1 {
-                                font: normal normal bold 3.5em $fontPublicSans;
+                                font: normal normal bold 5rem $fontPoppins;
                             }
 
                             p {
-                                font: normal normal bold 1em/1.6em $fontPublicSans;
+                                font: normal normal normal 2.8rem $fontPoppins;
                             }
                         }
+
+                        .floating-image {
+                            width: 35rem;
+                            right: 0rem;
+                            top: 10rem;
+                        }
                     }
-                }
-            }
 
-            .about-me {
-                max-width: 90%;
+                    &:nth-child(2),
+                    &:nth-child(3) {
 
-                .content {
-                    margin-top: 30px;
-                    grid-gap: 80px;
-
-                    .left-content {
-                        p {
-                            font: normal normal normal 1em/2em $fontPublicSans;
-                            margin-bottom: 0;
+                        h2 {
+                            font: normal normal bold 2.5rem $fontPoppins;
                         }
 
+                        svg {
+                            font-size: 13rem;
+                        }
                     }
 
-                    .right-content {
+                    &:nth-child(4) {
                         .image {
-                            width: 250px;
-                            height: 250px;
+                            width: 23rem;
+                            height: 23rem;
+                        }
+                    }
 
-                            .animation-image {
-                                top: 16px;
-                                bottom: 16px;
-                                left: 16px;
-                                right: 16px;
+
+                    &:nth-child(5) {
+                        .description {
+                            h1 {
+                                font: normal normal bold 10rem/10rem $fontPoppins;
+                            }
+
+                            h3 {
+                                font: normal normal normal 3rem $fontPoppins;
                             }
                         }
+                    }
+
+                    &:nth-child(6) {
+                        .description {
+                            h1 {
+                                font: normal normal bold 5rem $fontPoppins;
+                            }
+
+                            p {
+                                font: normal normal normal 3rem $fontPoppins;
+                            }
+                        }
+                    }
+
+                    &:nth-child(7) {
+                        .icons {
+                            max-width: 50rem;
+
+                            div {
+                                width: 5rem;
+                            }
+                        }
+                    }
+
+                    &:nth-child(8) {
+                        height: 10rem;
+                        grid-column: span 4;
                     }
                 }
             }
 
-            .skills {
-                max-width: 90%;
+            .education {
+                .education-container {
+                    grid-template-columns: auto;
 
-                .three-cards {
-                    .card {
-                        padding: 2rem;
+                    .education-card {
+                        small {
+                            font: normal italic normal 2rem $fontPoppins;
+                        }
 
                         h1 {
-                            font: normal normal normal 1.2em $fontPublicSans;
-                        }
-
-                        .icons {
-                            .icon {
-                                img {
-                                    width: 30px;
-                                }
-
-                                P {
-                                    font: normal normal normal .6em $fontPublicSans;
-                                }
-                            }
+                            font: normal normal normal 3rem $fontPoppins;
                         }
                     }
+
                 }
             }
 
             .experience {
-                max-width: 90%;
-                margin-bottom: 200px;
+                .checkpoint {
+                    max-width: 80rem;
 
-                .experience-container {
+                    &:nth-child(odd),
+                    &:nth-child(even) {
+                        width: 100%;
+                        transform: none;
+                        padding-right: 0;
+                        padding-left: 0;
+                        border: none;
 
-                    .jobs,
-                    .studies {
-                        border-radius: 10px;
-                        padding: 20px 10px;
+                        &::before {
+                            width: 3px;
+                            height: 4rem;
+                            top: -2rem;
+                            left: 50%;
+                            transform: translateX(-50%);
+                        }
 
-                        .job,
-                        .study {
-                            .text {
-                                padding: 1.5rem 2rem;
-                                margin-left: 20px;
+                        div {
+                            &::before {
+                                top: -0.7rem;
+                                left: 50%;
+                                transform: translateX(-50%);
+                            }
 
-                                small {
-                                    font: normal normal normal 0.9em $fontPublicSans;
-                                }
+                            h3 {
+                                font: normal normal bold 2.5rem $fontPoppins;
+                            }
 
-                                h1 {
-                                    font: normal normal normal 2em $fontPublicSans;
-                                }
+                            span {
+                                font: normal italic 500 2.4rem/2rem $fontPoppins;
+                            }
 
-                                p {
-                                    font: normal normal normal 1.2em/1.3em $fontPublicSans;
-                                }
+                            p {
+                                font: normal normal normal 2rem $fontPoppins;
+                                margin-top: 2rem;
                             }
                         }
                     }
@@ -703,189 +1336,235 @@ body {
             }
 
             .projects {
-                max-width: 90%;
-                margin-bottom: 150px;
+                height: 65rem;
 
                 .projects-cards {
-                    width: 100%;
-                    margin-top: 50px;
+                    grid-template-columns: repeat(auto-fill, minmax(0, 25rem));
 
                     .project-card {
-                        a {
-                            .bottom-content {
-                                padding: 1.3em;
-
-                                h1 {
-                                    font: normal normal normal 1.3em $fontPublicSans;
-                                    margin-bottom: 0px;
+                        .bottom-content {
+                            h1 {
+                                a {
+                                    font: normal normal normal 1.7rem $fontPoppins;
                                 }
+                            }
 
-                                p {
-                                    font: normal normal normal 1.1em/1.5em $fontPublicSans;
+                            .technologies {
+                                span {
+                                    font: normal normal normal 1rem $fontPoppins;
                                 }
                             }
                         }
                     }
                 }
             }
+        }
 
-            footer {
-                height: 90px;
-
-                small {
-                    font: normal normal bold 0.9em $fontPublicSans;
-                }
+        footer {
+            small {
+                font: normal normal bold 1.5em $fontPoppins;
             }
         }
     }
 }
 
-@media screen and (max-width: 1099px) {
-
-    .mobile-hamburger {
-        display: block;
-    }
-
-    .mail-button {
-        margin: 0px auto;
-    }
-
+@media (max-width: 767px) {
     .division {
-        grid-template-columns: auto;
-
-        .side-bar {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            left: -1100px;
-            z-index: 9;
-
-            .top-logo {
-                width: 90px;
-                height: 90px;
-            }
-
-            .menu-options {
-                span {
-                    font: normal normal normal 2em $fontPublicSans;
-                    padding: 0.5em;
-
-                    &:hover {
-                        font: normal normal bold 2em $fontPublicSans;
-                    }
-                }
-            }
-
-            .bottom-content {
-                h1 {
-                    font: normal normal normal 1.5em $fontPublicSans;
-
-                    &:hover {
-                        font: normal normal bold 1.5em $fontPublicSans;
-                    }
-                }
-            }
-        }
-
         .content-page {
-            .presentation {
-                height: auto;
+            padding: 2rem;
 
-                .presentation-container {
-                    grid-template-columns: auto;
-                    padding: 100px 0px;
+            .home-grid {
+                grid-template-rows: repeat(4, 1fr);
 
-                    .left-content {
-                        .text {
+                .offline {
+
+                    p,
+                    svg {
+                        font: normal normal normal 3rem $fontPoppins;
+                    }
+                }
+
+                .online {
+
+                    p,
+                    svg {
+                        font: normal normal normal 3rem $fontPoppins;
+                    }
+                }
+
+                .item {
+                    &:nth-child(1) {
+                        grid-column: span 4;
+
+                        .description {
+                            max-width: 70%;
+
                             h1 {
-                                font: normal normal bold 3.5em $fontPublicSans;
+                                font: normal normal bold 5rem $fontPoppins;
                             }
 
                             p {
-                                font: normal normal bold 1em/1.6em $fontPublicSans;
+                                font: normal normal normal 2.8rem $fontPoppins;
+                            }
+                        }
+
+                        .floating-image {
+                            width: 35rem;
+                            right: 0rem;
+                            top: 10rem;
+                        }
+                    }
+
+                    &:nth-child(2),
+                    &:nth-child(3) {
+
+                        h2 {
+                            font: normal normal bold 2.5rem $fontPoppins;
+                        }
+
+                        svg {
+                            font-size: 13rem;
+                        }
+                    }
+
+                    &:nth-child(4) {
+                        .image {
+                            width: 23rem;
+                            height: 23rem;
+                        }
+                    }
+
+
+                    &:nth-child(5) {
+                        .description {
+                            h1 {
+                                font: normal normal bold 10rem/10rem $fontPoppins;
+                            }
+
+                            h3 {
+                                font: normal normal normal 3rem $fontPoppins;
                             }
                         }
                     }
-                }
-            }
 
-            .about-me {
-                height: auto;
-                padding: 100px 0;
+                    &:nth-child(6) {
+                        .description {
+                            h1 {
+                                font: normal normal bold 5rem $fontPoppins;
+                            }
 
-                .content {
-                    flex-direction: column;
-                    margin: 30px auto;
-
-                    .left-content {
-                        p {
-                            font: normal normal normal 1em/2em $fontPublicSans;
-                            margin-bottom: 0;
+                            p {
+                                font: normal normal normal 3rem $fontPoppins;
+                            }
                         }
+                    }
+
+                    &:nth-child(7) {
+                        .icons {
+                            max-width: 50rem;
+
+                            div {
+                                width: 5rem;
+                            }
+                        }
+                    }
+
+                    &:nth-child(8) {
+                        height: 10rem;
+                        grid-column: span 4;
                     }
                 }
             }
 
-            .skills {
-                height: auto;
-                padding: 100px 0;
-
-                .three-cards {
+            .education {
+                .education-container {
                     grid-template-columns: auto;
+
+                    .education-card {
+                        small {
+                            font: normal italic normal 2rem $fontPoppins;
+                        }
+
+                        h1 {
+                            font: normal normal normal 3rem $fontPoppins;
+                        }
+                    }
+
                 }
             }
 
             .experience {
-                height: auto;
-                padding: 100px 0;
+                .checkpoint {
+                    max-width: 80rem;
 
-                .experience-container {
-                    grid-template-columns: auto;
+                    &:nth-child(odd),
+                    &:nth-child(even) {
+                        width: 100%;
+                        transform: none;
+                        padding-right: 0;
+                        padding-left: 0;
+                        border: none;
 
-                    .jobs,
-                    .studies {
-                        padding: 20px 25px;
+                        &::before {
+                            width: 3px;
+                            height: 4rem;
+                            top: -2rem;
+                            left: 50%;
+                            transform: translateX(-50%);
+                        }
+
+                        div {
+                            &::before {
+                                top: -0.7rem;
+                                left: 50%;
+                                transform: translateX(-50%);
+                            }
+
+                            h3 {
+                                font: normal normal bold 2.5rem $fontPoppins;
+                            }
+
+                            span {
+                                font: normal italic 500 2.4rem/2rem $fontPoppins;
+                            }
+
+                            p {
+                                font: normal normal normal 2rem $fontPoppins;
+                                margin-top: 2rem;
+                            }
+                        }
                     }
                 }
             }
 
             .projects {
-                height: auto;
-                padding: 100px 0;
+                height: 65rem;
 
                 .projects-cards {
-                    grid-template-columns: auto;
+                    grid-template-columns: repeat(auto-fill, minmax(0, 25rem));
 
                     .project-card {
-                        a {
-                            .top-image {
-                                width: auto;
-                                height: auto;
+                        .bottom-content {
+                            h1 {
+                                a {
+                                    font: normal normal normal 1.7rem $fontPoppins;
+                                }
                             }
 
-                            .bottom-content {
-                                padding: 1.3em;
-
-                                h1 {
-                                    font: normal normal normal 1.3em $fontPublicSans;
-                                    margin-bottom: 0px;
-                                }
-
-                                p {
-                                    font: normal normal normal 1.1em/1.5em $fontPublicSans;
+                            .technologies {
+                                span {
+                                    font: normal normal normal 1rem $fontPoppins;
                                 }
                             }
                         }
                     }
                 }
             }
+        }
 
-            footer {
-                height: 90px;
-
-                small {
-                    font: normal normal bold 0.9em $fontPublicSans;
-                }
+        footer {
+            small {
+                font: normal normal bold 1.5em $fontPoppins;
             }
         }
     }

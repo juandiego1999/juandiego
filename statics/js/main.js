@@ -1,34 +1,82 @@
-window.addEventListener('load', function (e) {
+const AVATAR_API_URL = "https://api.lanyard.rest/v1/users/961518819208220682";
+const hamburguer = $('.hamburguer')
 
-    const sections = ['about-me', 'skills', 'experience', 'projects', 'contact'];
-    const mobileMenu = $('.mobile-hamburger');
-    const mobileMenuIcon = mobileMenu.find('img');
-    const mobileSidebar = $('.side-bar');
-    const landButton = $('[lang-button]')
+let lastDiscordStatus = null;
+let isSidebarVisible = false;
 
-    $.each(sections, function (index, section) {
-        $('[' + section + ']').on('click', function () {
-            let container = $('.' + section).closest('.content-page');
-            container.animate({
-                scrollTop: $('.' + section).offset().top - container.offset().top + container.scrollTop()
-            }, 500);
-    
-            // Agregar esta línea para cerrar el menú si está abierto
-            if (mobileSidebar.css('left') !== '-1100px') {
-                mobileSidebar.animate({ left: '-1100px' });
-                mobileMenuIcon.attr('src', 'statics/images/icons/open.svg');
+function fetchAvatar() {
+    return fetch(`${AVATAR_API_URL}?_=${Date.now()}`)
+        .then(response => response.json())
+        .then(({ data }) => data)
+        .catch(error => {
+            console.error("Error al obtener la imagen del avatar de Discord:", error);
+            return null;
+        });
+}
+
+async function showDiscordAvatar() {
+    try {
+        const data = await fetchAvatar();
+        if (!data) return;
+
+        const { discord_status, discord_user } = data;
+        if (discord_status !== lastDiscordStatus) {
+            lastDiscordStatus = discord_status;
+
+            const $avatarDiscord = $('.avatar-discord');
+            const $discordContainer = $('.discord-container');
+            const $statusText = $discordContainer.find('p');
+
+            if (discord_status === "online" && discord_user) {
+                const avatarImage = `https://cdn.discordapp.com/avatars/${discord_user.id}/${discord_user.avatar}.png`;
+                $avatarDiscord.attr('src', avatarImage).fadeIn();
+                $statusText.text('Conectado');
+                $discordContainer.addClass('online').removeClass('offline');
+            } else {
+                $avatarDiscord.fadeOut();
+                $statusText.text('Desconectado');
+                $discordContainer.addClass('offline').removeClass('online');
             }
+        }
+    } catch (error) {
+        console.error("Error al obtener la imagen del avatar de Discord:", error);
+    }
+}
+
+function toggleSidebar() {
+    const mobileSidebar = $('.side-bar');
+    mobileSidebar.animate({ left: isSidebarVisible ? '-110%' : '0%' });
+    isSidebarVisible ? hamburguer.removeClass('active-hamburguer') : hamburguer.addClass('active-hamburguer')
+    isSidebarVisible = !isSidebarVisible;
+}
+
+function scrollToSection(section) {
+    const $container = $('.' + section).closest('.content-page');
+    $container.animate({
+        scrollTop: $('.' + section).offset().top - $container.offset().top + $container.scrollTop()
+    }, 500);
+}
+
+window.addEventListener('load', function (e) {
+    // Funciones iniciales
+    showDiscordAvatar();
+    setInterval(showDiscordAvatar, 10000);
+    $('.loader').addClass('close-loader');
+
+    // Abrir y cerrar menú
+    hamburguer.on('click', toggleSidebar);
+
+    // Secciones scroll
+    const mainSections = ['home-grid', 'experience', 'projects'];
+    mainSections.forEach(section => {
+        $(`[${section}]`).on('click', () => {
+            scrollToSection(section);
+            if (isSidebarVisible) toggleSidebar();
         });
     });
 
-    mobileMenu.on('click', function () {
-        const isHidden = mobileSidebar.css('left') === '-1100px';
-        mobileSidebar.animate({ left: isHidden ? '0px' : '-1100px' });
-        mobileMenuIcon.attr('src', isHidden ? 'statics/images/icons/close.svg' : 'statics/images/icons/open.svg');
-    });
-
-    landButton.on('click', function () {
+    // Multi-idiomas
+    $('[lang-button]').on('click', function () {
         iziToast.error({ timeout: 3000, icon: 'x icon', title: 'Función invalida', message: 'Lo siento, el cambio de lenguaje aún no está disponible.' });
     });
-
-})
+});
