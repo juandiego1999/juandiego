@@ -1,68 +1,182 @@
-@import '../fonts/public-sans/public-sans.css';
+@import '../fonts/poppins/poppins.css';
+html,
 body {
-  background-image: url(../images/background.png) !important;
-  background-color: #16171b !important;
+  height: 100%;
+  overflow: hidden;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  font-size: 0.83vw;
+  line-height: 1.15;
+}
+
+body {
+  background-color: #16171b;
+  margin: 0;
+  padding: 0;
+  min-width: 320px;
+  font-family: "Poppins", sans-serif;
+}
+
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  cursor: pointer;
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.2509803922);
+  -webkit-transition: color 0.2s ease;
+  transition: color 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(128, 135, 139, 0.8);
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1019607843);
+  border-radius: 0;
+}
+
+.noise {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.035;
+  z-index: 20;
+  pointer-events: none;
+  background-image: url(../images/noise.gif);
+}
+
+.loader-element {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.loader-element:nth-child(1) {
+  animation-delay: -0.45s;
+}
+.loader-element:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.loader-element:nth-child(3) {
+  animation-delay: -0.15s;
+}
+.loader-element div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border: 8px solid #fff;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #fff transparent transparent transparent;
+}
+
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.loader {
+  background-color: #003a54;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  -webkit-clip-path: circle(141.2% at 100% 0);
+          clip-path: circle(141.2% at 100% 0);
+  transition: -webkit-clip-path 0.3s ease-in-out;
+  transition: clip-path 0.3s ease-in-out;
+  transition: clip-path 0.3s ease-in-out, -webkit-clip-path 0.3s ease-in-out;
+}
+
+.close-loader {
+  -webkit-clip-path: circle(0% at 100% 0);
+          clip-path: circle(0% at 100% 0);
+  transition: -webkit-clip-path 0.3s ease-in-out;
+  transition: clip-path 0.3s ease-in-out;
+  transition: clip-path 0.3s ease-in-out, -webkit-clip-path 0.3s ease-in-out;
 }
 
 .section-title {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.section-title h1 {
-  font: normal normal bold 3em "Public Sans";
+  font: normal normal bold 3em "Poppins", sans-serif;
   text-align: center;
-  color: white;
+  color: #ffffff;
 }
 
-.mail-button {
-  display: flex;
-  align-items: center;
-  grid-gap: 10px;
-  padding: 1em;
-  border-radius: 5px;
-  width: -moz-fit-content;
-  width: fit-content;
-  cursor: pointer;
-  transition: 0.3s;
-  background-color: transparent;
-  box-shadow: inset 0 0 0 1px #027dfc;
-}
-.mail-button a {
-  color: white !important;
-  font: normal normal bold 1.2em "Public Sans";
-  text-decoration: none !important;
-}
-.mail-button i {
-  color: white !important;
-  font-size: 20px !important;
-  margin: 0px auto !important;
-}
-.mail-button:hover {
-  transition: 0.3s;
-  background-color: #777;
+.section-container {
+  margin-top: 4rem;
 }
 
-.mobile-hamburger {
+.hamburguer {
   position: fixed;
-  right: 5vw;
-  top: 2vw;
+  z-index: 3;
+  right: 5%;
+  top: 3%;
   display: none;
-  z-index: 10;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 32px;
+  border-radius: 50px;
+  cursor: pointer;
 }
-.mobile-hamburger img {
-  width: 40px;
-  height: 40px;
-  -o-object-fit: cover;
-     object-fit: cover;
+.hamburguer span::after,
+.hamburguer span::before,
+.hamburguer span {
+  background-color: #ffffff;
+  width: 100%;
+  height: 3px;
+  border-radius: 2px;
+  transition: 0.3s;
+}
+.hamburguer span::before, .hamburguer span::after {
+  content: "";
+  position: absolute;
+  display: block;
+}
+.hamburguer span::before {
+  top: 0;
+}
+.hamburguer span::after {
+  bottom: 0;
+}
+
+.active-hamburguer span {
+  background-color: transparent;
+}
+.active-hamburguer span::before {
+  top: 50%;
+  transform: rotate(135deg);
+}
+.active-hamburguer span::after {
+  top: 50%;
+  transform: rotate(-135deg);
 }
 
 .division {
-  display: grid;
-  grid-template-columns: 150px auto;
-  width: 100%;
   max-width: 1920px;
+  min-width: 260px;
   margin: 0px auto;
+  width: 100%;
 }
 .division .side-bar {
   background-color: #222;
@@ -70,7 +184,12 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  position: fixed;
   padding: 5em 1em 1em 1em;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  left: -110%;
 }
 .division .side-bar .top-logo {
   width: 80px;
@@ -92,12 +211,12 @@ body {
   padding: 1em 0em;
   color: #eee;
   cursor: pointer;
-  font: normal normal normal 16px "Public Sans";
+  font: normal normal normal 16px "Poppins", sans-serif;
   opacity: 0.5;
   transition: 0.3s;
 }
 .division .side-bar .menu-options span:hover {
-  font: normal normal bold 16px "Public Sans";
+  font: normal normal bold 16px "Poppins", sans-serif;
   transition: 0.3s;
   opacity: 1;
 }
@@ -105,67 +224,105 @@ body {
   margin-bottom: 1em;
   color: #eee;
   cursor: pointer;
-  font: normal normal normal 20px "Public Sans";
+  font: normal normal normal 20px "Poppins", sans-serif;
   opacity: 0.5;
   transition: 0.3s;
 }
 .division .side-bar .bottom-content h1:hover {
-  font: normal normal bold 20px "Public Sans";
+  font: normal normal bold 20px "Poppins", sans-serif;
   transition: 0.3s;
   opacity: 1;
 }
 .division .content-page {
   height: 100vh;
+  padding: 2rem 21rem;
   overflow-y: auto;
-  overflow-x: hidden;
+  margin: 0px auto;
 }
-.division .content-page .background {
-  position: absolute;
-  width: 75%;
-  height: 100vh;
-  -webkit-clip-path: polygon(100% 0%, 81% 86%, 0% 100%, 0% 0%);
-          clip-path: polygon(100% 0%, 81% 86%, 0% 100%, 0% 0%);
-  background-color: #34353a;
-}
-.division .content-page .presentation {
-  height: 100vh;
-  position: relative;
-}
-.division .content-page .presentation .presentation-container {
-  max-width: 1200px;
-  height: 100%;
+.division .content-page .home-grid {
   display: grid;
-  grid-template-columns: 50% 50%;
-  align-items: center;
-  justify-content: space-between;
-  margin: 0px auto;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-rows: repeat(4, 1fr);
+  margin: 0 auto;
+  grid-gap: 1rem;
+}
+.division .content-page .home-grid .offline {
+  background-color: rgba(119, 119, 119, 0.1294117647);
+  transition: background-color 0.3s ease;
+}
+.division .content-page .home-grid .offline p,
+.division .content-page .home-grid .offline svg {
+  font: normal normal normal 2rem/32px "Poppins", sans-serif;
+  color: #b6c2c9;
+}
+.division .content-page .home-grid .online {
+  background-color: #003a54;
+  transition: background-color 0.3s ease;
+}
+.division .content-page .home-grid .online p,
+.division .content-page .home-grid .online svg {
+  font: normal normal normal 2rem/32px "Poppins", sans-serif;
+  color: #6adbc6;
+  animation: onlineTextAnimation 3s infinite;
+}
+@keyframes onlineTextAnimation {
+  0% {
+    color: #00cca6;
+    transform: scale(1);
+  }
+  50% {
+    color: #6adbc6;
+    transform: scale(1.05);
+  }
+  100% {
+    color: #00cca6;
+    transform: scale(1);
+  }
+}
+.division .content-page .home-grid .item {
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 1rem;
+  transition: 0.3s;
+}
+.division .content-page .home-grid .item:hover {
+  transition: 0.3s;
+}
+.division .content-page .home-grid .item:nth-child(1) {
   position: relative;
+  grid-row: span 2;
+  grid-column: span 3;
+  background-color: #1481b8;
 }
-.division .content-page .presentation .presentation-container .left-content {
-  margin: 0px auto;
+.division .content-page .home-grid .item:nth-child(1):hover {
+  outline: 1px solid #027dfc;
+  box-shadow: 0 0 10px 1px #027dfc;
 }
-.division .content-page .presentation .presentation-container .left-content .text h1 {
-  font: normal normal bold 4.5em "Public Sans";
-  color: white;
+.division .content-page .home-grid .item:nth-child(1) .description {
+  position: absolute;
+  max-width: 600px;
+  left: 2rem;
+  bottom: 0;
+  color: #ffffff;
 }
-.division .content-page .presentation .presentation-container .left-content .text p {
-  font: normal normal bold 1.5em/32px "Public Sans";
-  color: #05b0ff;
-  margin: 0px auto;
+.division .content-page .home-grid .item:nth-child(1) .description h1 {
+  font: normal normal bold 2.5em "Poppins", sans-serif;
 }
-.division .content-page .presentation .presentation-container .left-content .text p b {
-  color: white;
+.division .content-page .home-grid .item:nth-child(1) .description p {
+  font: normal normal normal 1.3em/32px "Poppins", sans-serif;
 }
-.division .content-page .presentation .presentation-container .right-content {
-  margin: 0px auto;
+.division .content-page .home-grid .item:nth-child(1) .description p i {
+  color: #eee;
 }
-.division .content-page .presentation .presentation-container .right-content img {
+.division .content-page .home-grid .item:nth-child(1) .floating-image {
+  position: absolute;
+  width: 20rem;
+  right: 0;
+  top: 0;
+}
+.division .content-page .home-grid .item:nth-child(1) .floating-image img {
   width: 100%;
-  animation-name: floatingImage;
-  animation-duration: 2s;
-  animation-iteration-count: infinite;
-  animation-timing-function: ease-in-out;
-  animation-direction: alternate;
+  animation: floatingImage 2s infinite alternate ease-in-out;
 }
 @keyframes floatingImage {
   0% {
@@ -175,48 +332,73 @@ body {
     transform: translateY(2%);
   }
 }
-.division .content-page .about-me {
+.division .content-page .home-grid .item:nth-child(2), .division .content-page .home-grid .item:nth-child(3) {
   display: flex;
+  align-items: center;
   flex-direction: column;
   justify-content: center;
-  min-height: 100vh;
-  max-width: 1200px;
-  margin: 0px auto;
+  text-decoration: none;
+  background-color: #713e3e;
+  aspect-ratio: 1/1;
 }
-.division .content-page .about-me .content {
-  display: flex;
-  margin-top: 50px;
-  align-items: center;
-  justify-content: center;
-  grid-gap: 110px;
+.division .content-page .home-grid .item:nth-child(2):hover, .division .content-page .home-grid .item:nth-child(3):hover {
+  outline: 1px solid #ff5656;
+  box-shadow: 0 0 10px 1px #ff5656;
 }
-.division .content-page .about-me .content .left-content p {
-  font: normal normal normal 16px/30px "Public Sans";
-  color: #ddd;
+.division .content-page .home-grid .item:nth-child(2):hover h2,
+.division .content-page .home-grid .item:nth-child(2):hover svg, .division .content-page .home-grid .item:nth-child(3):hover h2,
+.division .content-page .home-grid .item:nth-child(3):hover svg {
+  transform: scale(1.1);
+  transition: 0.3s;
+  color: #eee;
 }
-.division .content-page .about-me .content .left-content p b {
-  color: #05b0ff;
+.division .content-page .home-grid .item:nth-child(2) h2,
+.division .content-page .home-grid .item:nth-child(2) svg, .division .content-page .home-grid .item:nth-child(3) h2,
+.division .content-page .home-grid .item:nth-child(3) svg {
+  color: #b6c2c9;
+  transition: 0.3s;
 }
-.division .content-page .about-me .content .right-content .image {
-  width: 350px;
-  height: 350px;
+.division .content-page .home-grid .item:nth-child(2) h2, .division .content-page .home-grid .item:nth-child(3) h2 {
+  font: normal normal bold 2rem "Poppins", sans-serif;
+  margin: 0 auto;
+}
+.division .content-page .home-grid .item:nth-child(2) svg, .division .content-page .home-grid .item:nth-child(3) svg {
+  font-size: 10rem;
+}
+.division .content-page .home-grid .item:nth-child(4) {
   position: relative;
   display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #222;
+  aspect-ratio: 1/1;
 }
-.division .content-page .about-me .content .right-content .image img {
-  width: 80%;
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-  margin: 0px auto;
+.division .content-page .home-grid .item:nth-child(4):hover {
+  outline: 1px solid #eee;
+  box-shadow: 0 0 10px 1px #eee;
+  transition: 0.3s;
 }
-.division .content-page .about-me .content .right-content .image .animation-image {
+.division .content-page .home-grid .item:nth-child(4):hover span {
+  bottom: 2rem;
+  transition: 0.3s;
+}
+.division .content-page .home-grid .item:nth-child(4) .image {
+  position: relative;
+  display: flex;
+  width: 16rem;
+  height: 16rem;
+  z-index: 1;
+}
+.division .content-page .home-grid .item:nth-child(4) .image img {
+  margin: 0 auto;
+}
+.division .content-page .home-grid .item:nth-child(4) .image .animation-image {
   position: absolute;
   content: "";
-  top: 24px;
-  bottom: 24px;
-  left: 24px;
-  right: 24px;
+  top: 1.5rem;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  right: 1.5rem;
   background: linear-gradient(90deg, #5f5f5f, #c1c1c1);
   z-index: -1;
   transform: rotate(-50deg);
@@ -230,490 +412,733 @@ body {
     transform: rotate(-30deg);
   }
 }
-.division .content-page .skills {
+.division .content-page .home-grid .item:nth-child(4) span {
+  position: absolute;
+  display: flex;
+  z-index: 2;
+  align-items: center;
+  bottom: -5rem;
+  padding: 1em;
+  border-radius: 5px;
+  background-color: #777;
+  font: normal normal normal 1.2em "Poppins", sans-serif;
+  color: #ffffff;
+  transition: 0.3s;
+}
+.division .content-page .home-grid .item:nth-child(5) {
+  background-color: #713e3e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1/1;
+}
+.division .content-page .home-grid .item:nth-child(5):hover {
+  outline: 1px solid #ff5656;
+  box-shadow: 0 0 10px 1px #ff5656;
+}
+.division .content-page .home-grid .item:nth-child(5) .description {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  min-height: 100vh;
-  max-width: 1200px;
-  margin: 0px auto;
+  align-items: center;
 }
-.division .content-page .skills .three-cards {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+.division .content-page .home-grid .item:nth-child(5) .description h1 {
+  color: #b6c2c9;
+  font: normal normal bold 5rem/1rem "Poppins", sans-serif;
+  margin: 0;
+}
+.division .content-page .home-grid .item:nth-child(5) .description h3 {
+  color: #b6c2c9;
+  font: normal normal normal 2rem/7rem "Poppins", sans-serif;
+  margin: 0;
+}
+.division .content-page .home-grid .item:nth-child(6) {
+  position: relative;
+  grid-column: span 2;
+  background-color: #003a54;
+  padding: 0;
+  cursor: pointer;
+}
+.division .content-page .home-grid .item:nth-child(6):hover {
+  outline: 1px solid #027dfc;
+  box-shadow: 0 0 10px 1px #027dfc;
+}
+.division .content-page .home-grid .item:nth-child(6) .description {
+  position: absolute;
+  color: #ffffff;
+  top: 1rem;
+  left: 2rem;
+}
+.division .content-page .home-grid .item:nth-child(6) .description h1 {
+  font: normal normal bold 2.5em "Poppins", sans-serif;
+  margin: 0;
+}
+.division .content-page .home-grid .item:nth-child(6) .description p {
+  font: normal normal normal 1.5em/32px "Poppins", sans-serif;
+  margin: 0;
+}
+.division .content-page .home-grid .item:nth-child(6) img {
+  position: absolute;
+  -o-object-fit: cover;
+     object-fit: cover;
+  height: 100%;
   width: 100%;
-  margin-top: 50px;
-  grid-gap: 1.5rem;
+  opacity: 0.4;
 }
-.division .content-page .skills .three-cards h1 {
-  color: #05b0ff;
+.division .content-page .home-grid .item:nth-child(7), .division .content-page .home-grid .item:nth-child(8) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  grid-column: span 2;
+  padding: 0;
 }
-.division .content-page .skills .three-cards .card {
-  padding: 4rem;
-  border-radius: 1rem;
+.division .content-page .home-grid .item:nth-child(7) {
   background-color: #222;
 }
-.division .content-page .skills .three-cards .card h1 {
-  text-align: center;
-  margin-bottom: 40px;
-  font: normal normal normal 20.8px "Public Sans";
-}
-.division .content-page .skills .three-cards .card .icons {
+.division .content-page .home-grid .item:nth-child(7) .icons {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   grid-gap: 10px;
 }
-.division .content-page .skills .three-cards .card .icons .icon {
-  width: 70px;
-  padding: 5px;
-  border-radius: 0.5rem;
-  background-color: #454549;
+.division .content-page .home-grid .item:nth-child(7) .icons div {
+  width: 3rem;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-color: #454549;
+  transition: 0.3s;
+  padding: 1rem;
+  border-radius: 10px;
+}
+.division .content-page .home-grid .item:nth-child(7) .icons div:hover {
+  outline: 1px solid #027dfc;
+  box-shadow: 0 0 10px 1px #027dfc;
+}
+.division .content-page .home-grid .item:nth-child(7) .icons div:hover img {
+  mix-blend-mode: normal;
   transition: 0.3s;
 }
-.division .content-page .skills .three-cards .card .icons .icon img {
-  width: 40px;
-  height: auto;
+.division .content-page .home-grid .item:nth-child(7) .icons div img {
+  width: 100%;
+  transition: 0.3s;
   -o-object-fit: cover;
      object-fit: cover;
-  margin-bottom: 5px;
-  transition: 0.3s;
-  mix-blend-mode: luminosity;
 }
-.division .content-page .skills .three-cards .card .icons .icon P {
-  padding: 0.5em 0 0;
-  color: white;
-  font: normal normal normal 0.7em "Public Sans";
-}
-.division .content-page .skills .three-cards .card .icons .icon:hover {
-  transition: 0.3s;
-  outline: 1px solid #027dfc;
-  box-shadow: 0 0 10px 1px #027dfc;
-}
-.division .content-page .skills .three-cards .card .icons .icon:hover img {
-  mix-blend-mode: normal;
-  transition: 0.3s;
-}
-.division .content-page .experience {
+.division .content-page .home-grid .item:nth-child(8) {
   display: flex;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
-  justify-content: center;
-  min-height: 100vh;
-  max-width: 1200px;
-  margin: 0px auto;
+  grid-column: span 2;
 }
-.division .content-page .experience .experience-container {
-  display: grid;
-  grid-template-columns: 50% 50%;
-  justify-content: center;
-  background-color: #222;
-  margin-top: 50px;
+.division .content-page .home-grid .item:nth-child(8) .avatar-discord {
+  width: 170px;
+  height: 170px;
+  border-radius: 100px;
+  transition: opacity 0.3s ease;
 }
-.division .content-page .experience .experience-container .jobs,
-.division .content-page .experience .experience-container .studies {
-  border-radius: 10px;
-  padding: 20px 10px;
-}
-.division .content-page .experience .experience-container .jobs .job,
-.division .content-page .experience .experience-container .jobs .study,
-.division .content-page .experience .experience-container .studies .job,
-.division .content-page .experience .experience-container .studies .study {
+.division .content-page .home-grid .item:nth-child(8) .text-container {
   display: flex;
-  justify-content: space-around;
-  margin-top: 40px;
-  background-color: #222;
+  align-items: center;
+  gap: 1rem;
 }
-.division .content-page .experience .experience-container .jobs .job .line,
-.division .content-page .experience .experience-container .jobs .study .line,
-.division .content-page .experience .experience-container .studies .job .line,
-.division .content-page .experience .experience-container .studies .study .line {
+.division .content-page .education {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: #1481b8;
+  border-radius: 0.5rem;
+  padding: 0 0 3rem 0;
 }
-.division .content-page .experience .experience-container .jobs .job .line .separator,
-.division .content-page .experience .experience-container .jobs .study .line .separator,
-.division .content-page .experience .experience-container .studies .job .line .separator,
-.division .content-page .experience .experience-container .studies .study .line .separator {
-  height: 100%;
-  width: 2px;
-  background-color: white;
+.division .content-page .education .education-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  grid-gap: 1rem;
 }
-.division .content-page .experience .experience-container .jobs .job .line i,
-.division .content-page .experience .experience-container .jobs .study .line i,
-.division .content-page .experience .experience-container .studies .job .line i,
-.division .content-page .experience .experience-container .studies .study .line i {
-  color: white;
-  margin: 15px 0px;
-  font-size: 20px;
-}
-.division .content-page .experience .experience-container .jobs .job .text,
-.division .content-page .experience .experience-container .jobs .study .text,
-.division .content-page .experience .experience-container .studies .job .text,
-.division .content-page .experience .experience-container .studies .study .text {
-  background-color: #454549;
-  border-radius: 10px;
+.division .content-page .education .education-container .education-card {
+  background-color: #2e3538;
+  border-radius: 0.5rem;
   padding: 1.5rem 2rem;
-  width: 100%;
-  margin-left: 20px;
-  transition: 0.3s;
 }
-.division .content-page .experience .experience-container .jobs .job .text small,
-.division .content-page .experience .experience-container .jobs .study .text small,
-.division .content-page .experience .experience-container .studies .job .text small,
-.division .content-page .experience .experience-container .studies .study .text small {
-  font: normal normal normal 14px "Public Sans";
-  color: #05b0ff;
+.division .content-page .education .education-container .education-card small {
+  font: normal italic normal 0.9rem "Poppins", sans-serif;
+  color: #929fa5;
   margin: auto;
 }
-.division .content-page .experience .experience-container .jobs .job .text h1,
-.division .content-page .experience .experience-container .jobs .study .text h1,
-.division .content-page .experience .experience-container .studies .job .text h1,
-.division .content-page .experience .experience-container .studies .study .text h1 {
-  font: normal normal normal 30px "Public Sans";
-  color: white;
+.division .content-page .education .education-container .education-card h1 {
+  font: normal normal normal 1.5rem "Poppins", sans-serif;
+  color: #b6c2c9;
   margin-top: 0px;
 }
-.division .content-page .experience .experience-container .jobs .job .text p,
-.division .content-page .experience .experience-container .jobs .study .text p,
-.division .content-page .experience .experience-container .studies .job .text p,
-.division .content-page .experience .experience-container .studies .study .text p {
-  font: normal normal normal 16px/25px "Public Sans";
+.division .content-page .experience {
+  border-radius: 0.5rem;
+  background: url(../images/backgroud-timeline.jpg) no-repeat center fixed;
+  background-size: cover;
+  padding: 1rem 10rem;
+  position: relative;
+  overflow: hidden;
+}
+.division .content-page .experience .section-title {
+  position: relative;
+}
+.division .content-page .experience:before {
+  content: "";
+  background-color: rgba(0, 0, 0, 0.7019607843);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.division .content-page .experience .checkpoint {
+  max-width: 27em;
+  padding-top: 2em;
+  padding-bottom: 2em;
+  position: relative;
+}
+.division .content-page .experience .checkpoint:nth-child(odd)::before, .division .content-page .experience .checkpoint:nth-child(even)::before {
+  content: "";
+  background-color: #b6c2c9;
+  width: 3rem;
+  height: 3px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.division .content-page .experience .checkpoint:nth-child(odd) {
+  border-left: 2px solid #b6c2c9;
+  padding-left: 3rem;
+  transform: translateX(30rem);
+}
+.division .content-page .experience .checkpoint:nth-child(odd)::before {
+  left: 0;
+}
+.division .content-page .experience .checkpoint:nth-child(odd) div::before {
+  left: -0.5rem;
+}
+.division .content-page .experience .checkpoint:nth-child(even) {
+  border-right: 2px solid #b6c2c9;
+  padding-right: 3rem;
+}
+.division .content-page .experience .checkpoint:nth-child(even)::before {
+  right: 0;
+}
+.division .content-page .experience .checkpoint:nth-child(even) div::before {
+  right: -0.5rem;
+}
+.division .content-page .experience .checkpoint div {
+  border: 2px solid #b6c2c9;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  transition: 0.5s;
+  cursor: pointer;
+}
+.division .content-page .experience .checkpoint div:hover {
+  background-color: #1481b8;
+  transition: 0.5s;
+}
+.division .content-page .experience .checkpoint div::before {
+  content: "";
+  background-color: #1481b8;
+  border: 2px solid #b6c2c9;
+  box-shadow: 0 0 0.5rem #1481b8;
+  width: 0.8rem;
+  height: 0.8rem;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 100px;
+}
+.division .content-page .experience .checkpoint div h3 {
+  font: normal normal bold 1.2rem "Poppins", sans-serif;
+  margin: 0.5rem auto 0.2rem auto;
   color: #eee;
 }
-.division .content-page .experience .experience-container .jobs .job .text:hover,
-.division .content-page .experience .experience-container .jobs .study .text:hover,
-.division .content-page .experience .experience-container .studies .job .text:hover,
-.division .content-page .experience .experience-container .studies .study .text:hover {
-  transition: 0.3s;
-  outline: 1px solid #027dfc;
-  box-shadow: 0 0 10px 1px #027dfc;
+.division .content-page .experience .checkpoint div span {
+  font: normal italic 500 1.1rem "Poppins", sans-serif;
+  color: #b6c2c9;
 }
-.division .content-page .experience .experience-container .jobs .job .text:hover img,
-.division .content-page .experience .experience-container .jobs .study .text:hover img,
-.division .content-page .experience .experience-container .studies .job .text:hover img,
-.division .content-page .experience .experience-container .studies .study .text:hover img {
-  mix-blend-mode: normal;
-  transition: 0.3s;
+.division .content-page .experience .checkpoint div p {
+  font: normal normal normal 0.9rem "Poppins", sans-serif;
+  color: #b6c2c9;
+  margin-top: 1.5rem;
 }
 .division .content-page .projects {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  min-height: 100vh;
-  max-width: 1200px;
-  margin: 0px auto;
-  margin-bottom: 200px;
+  background-color: #2e3538;
+  padding: 1rem 0 5rem 0;
+  height: 55rem;
 }
 .division .content-page .projects .projects-cards {
   display: grid;
-  grid-gap: 2em;
-  grid-row-gap: 50px;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  width: 100%;
-  margin-top: 100px;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fill, minmax(0, 20rem));
+  grid-gap: 1rem;
 }
 .division .content-page .projects .projects-cards .project-card {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  background-color: #222;
+  position: relative;
   border-radius: 1rem;
   overflow: hidden;
   transition: 0.5s;
+  background-color: #222;
 }
-.division .content-page .projects .projects-cards .project-card a {
+.division .content-page .projects .projects-cards .project-card .top-image {
+  aspect-ratio: 1/1;
+}
+.division .content-page .projects .projects-cards .project-card .top-image img {
   width: 100%;
   height: 100%;
-}
-.division .content-page .projects .projects-cards .project-card a .top-image {
-  width: 380px;
-  height: 200px;
-  overflow: hidden;
-}
-.division .content-page .projects .projects-cards .project-card a .top-image img {
-  width: 100%;
-  max-height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
-  transition: 0.5s;
+  transition: height 0.3s ease;
 }
-.division .content-page .projects .projects-cards .project-card a .bottom-content {
+.division .content-page .projects .projects-cards .project-card .bottom-content {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   padding: 1.3em;
+  position: absolute;
+  height: -moz-fit-content;
+  height: fit-content;
+  bottom: -100%;
+  transition: 0.5s;
 }
-.division .content-page .projects .projects-cards .project-card a .bottom-content h1 {
-  font: normal normal normal 20.8px "Public Sans";
+.division .content-page .projects .projects-cards .project-card .bottom-content h1 a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font: normal normal normal 1rem "Poppins", sans-serif;
   color: #05b0ff;
+  text-decoration: none;
 }
-.division .content-page .projects .projects-cards .project-card a .bottom-content p {
-  margin: 1em 0 0;
-  font: normal normal normal 16px/25px "Public Sans";
-  color: white;
+.division .content-page .projects .projects-cards .project-card .bottom-content .technologies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.1rem 0.2rem;
+}
+.division .content-page .projects .projects-cards .project-card .bottom-content .technologies span {
+  padding: 0.3rem 0.7rem;
+  font: normal normal normal 0.7rem "Poppins", sans-serif;
+  color: #ffffff;
+  background-color: rgba(119, 119, 119, 0.1294117647);
+  border-radius: 0.5rem;
 }
 .division .content-page .projects .projects-cards .project-card:hover {
   outline: 1px solid #027dfc;
   box-shadow: 0 0 10px 1px #027dfc;
   transition: 0.5s;
 }
-.division .content-page .projects .projects-cards .project-card:hover a .top-image img {
-  transform: scale(1.2);
+.division .content-page .projects .projects-cards .project-card:hover .top-image img {
+  height: 50%;
+  transition: height 0.3s ease;
   transition: 0.5s;
 }
-.division .content-page footer {
-  display: flex;
-  background-color: #222;
-  height: 100px;
-  align-items: center;
-  justify-content: center;
+.division .content-page .projects .projects-cards .project-card:hover .bottom-content {
+  bottom: 1rem;
+  transition: bottom 0.5s;
 }
-.division .content-page footer small {
-  color: white;
-  font: normal normal bold 1em/30px "Public Sans";
+.division footer {
+  text-align: center;
+  height: 8rem;
+}
+.division footer small {
+  font: normal normal bold 1em/30px "Poppins", sans-serif;
+  color: #ffffff;
 }
 
-@media screen and (max-width: 1600px) {
-  .section-title h1 {
-    font: normal normal bold 2em "Public Sans";
+@media screen and (max-width: 1279px) {
+  .hamburguer {
+    display: flex;
   }
-  .mail-button a {
-    font: normal normal bold 1em "Public Sans";
+  .division .experience {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
-  .mail-button i {
-    font-size: 1em !important;
+  .division .experience .checkpoint:nth-child(odd), .division .experience .checkpoint:nth-child(even) {
+    transform: none;
+    padding-right: 0;
+    padding-left: 0;
+    border: none;
   }
-  .division {
-    grid-template-columns: 130px auto;
+  .division .experience .checkpoint:nth-child(odd)::before, .division .experience .checkpoint:nth-child(even)::before {
+    width: 3px;
+    height: 4rem;
+    top: -2rem;
+    left: 50%;
+    transform: translateX(-50%);
   }
-  .division .side-bar .top-logo {
-    width: 60px;
-    height: 60px;
-  }
-  .division .side-bar .menu-options span {
-    font: normal normal normal 1em "Public Sans";
-  }
-  .division .side-bar .menu-options span:hover {
-    font: normal normal bold 1em "Public Sans";
-  }
-  .division .side-bar .bottom-content h1 {
-    font: normal normal normal 1.2em "Public Sans";
-  }
-  .division .side-bar .bottom-content h1:hover {
-    font: normal normal bold 1.2em "Public Sans";
-  }
-  .division .content-page .presentation .presentation-container {
-    max-width: 90%;
-  }
-  .division .content-page .presentation .presentation-container .left-content .text h1 {
-    font: normal normal bold 3.5em "Public Sans";
-  }
-  .division .content-page .presentation .presentation-container .left-content .text p {
-    font: normal normal bold 1em/1.6em "Public Sans";
-  }
-  .division .content-page .about-me {
-    max-width: 90%;
-  }
-  .division .content-page .about-me .content {
-    margin-top: 30px;
-    grid-gap: 80px;
-  }
-  .division .content-page .about-me .content .left-content p {
-    font: normal normal normal 1em/2em "Public Sans";
-    margin-bottom: 0;
-  }
-  .division .content-page .about-me .content .right-content .image {
-    width: 250px;
-    height: 250px;
-  }
-  .division .content-page .about-me .content .right-content .image .animation-image {
-    top: 16px;
-    bottom: 16px;
-    left: 16px;
-    right: 16px;
-  }
-  .division .content-page .skills {
-    max-width: 90%;
-  }
-  .division .content-page .skills .three-cards .card {
-    padding: 2rem;
-  }
-  .division .content-page .skills .three-cards .card h1 {
-    font: normal normal normal 1.2em "Public Sans";
-  }
-  .division .content-page .skills .three-cards .card .icons .icon img {
-    width: 30px;
-  }
-  .division .content-page .skills .three-cards .card .icons .icon P {
-    font: normal normal normal 0.6em "Public Sans";
-  }
-  .division .content-page .experience {
-    max-width: 90%;
-    margin-bottom: 200px;
-  }
-  .division .content-page .experience .experience-container .jobs,
-  .division .content-page .experience .experience-container .studies {
-    border-radius: 10px;
-    padding: 20px 10px;
-  }
-  .division .content-page .experience .experience-container .jobs .job .text,
-  .division .content-page .experience .experience-container .jobs .study .text,
-  .division .content-page .experience .experience-container .studies .job .text,
-  .division .content-page .experience .experience-container .studies .study .text {
-    padding: 1.5rem 2rem;
-    margin-left: 20px;
-  }
-  .division .content-page .experience .experience-container .jobs .job .text small,
-  .division .content-page .experience .experience-container .jobs .study .text small,
-  .division .content-page .experience .experience-container .studies .job .text small,
-  .division .content-page .experience .experience-container .studies .study .text small {
-    font: normal normal normal 0.9em "Public Sans";
-  }
-  .division .content-page .experience .experience-container .jobs .job .text h1,
-  .division .content-page .experience .experience-container .jobs .study .text h1,
-  .division .content-page .experience .experience-container .studies .job .text h1,
-  .division .content-page .experience .experience-container .studies .study .text h1 {
-    font: normal normal normal 2em "Public Sans";
-  }
-  .division .content-page .experience .experience-container .jobs .job .text p,
-  .division .content-page .experience .experience-container .jobs .study .text p,
-  .division .content-page .experience .experience-container .studies .job .text p,
-  .division .content-page .experience .experience-container .studies .study .text p {
-    font: normal normal normal 1.2em/1.3em "Public Sans";
-  }
-  .division .content-page .projects {
-    max-width: 90%;
-    margin-bottom: 150px;
-  }
-  .division .content-page .projects .projects-cards {
-    width: 100%;
-    margin-top: 50px;
-  }
-  .division .content-page .projects .projects-cards .project-card a .bottom-content {
-    padding: 1.3em;
-  }
-  .division .content-page .projects .projects-cards .project-card a .bottom-content h1 {
-    font: normal normal normal 1.3em "Public Sans";
-    margin-bottom: 0px;
-  }
-  .division .content-page .projects .projects-cards .project-card a .bottom-content p {
-    font: normal normal normal 1.1em/1.5em "Public Sans";
-  }
-  .division .content-page footer {
-    height: 90px;
-  }
-  .division .content-page footer small {
-    font: normal normal bold 0.9em "Public Sans";
+  .division .experience .checkpoint:nth-child(odd) div::before, .division .experience .checkpoint:nth-child(even) div::before {
+    top: -0.5rem;
+    left: 50%;
+    transform: translateX(-50%);
   }
 }
-@media screen and (max-width: 1099px) {
-  .mobile-hamburger {
-    display: block;
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .division .content-page {
+    padding: 2rem;
   }
-  .mail-button {
-    margin: 0px auto;
+  .division .content-page .home-grid {
+    grid-template-rows: repeat(3, 1fr);
   }
-  .division {
-    grid-template-columns: auto;
+  .division .content-page .home-grid .offline p,
+  .division .content-page .home-grid .offline svg {
+    font: normal normal normal 3rem "Poppins", sans-serif;
   }
-  .division .side-bar {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    left: -1100px;
-    z-index: 9;
+  .division .content-page .home-grid .online p,
+  .division .content-page .home-grid .online svg {
+    font: normal normal normal 3rem "Poppins", sans-serif;
   }
-  .division .side-bar .top-logo {
-    width: 90px;
-    height: 90px;
+  .division .content-page .home-grid .item:nth-child(1) {
+    grid-row: span 1;
+    grid-column: span 4;
   }
-  .division .side-bar .menu-options span {
-    font: normal normal normal 2em "Public Sans";
-    padding: 0.5em;
+  .division .content-page .home-grid .item:nth-child(1) .description {
+    top: 3rem;
+    left: 5rem;
   }
-  .division .side-bar .menu-options span:hover {
-    font: normal normal bold 2em "Public Sans";
-  }
-  .division .side-bar .bottom-content h1 {
-    font: normal normal normal 1.5em "Public Sans";
-  }
-  .division .side-bar .bottom-content h1:hover {
-    font: normal normal bold 1.5em "Public Sans";
-  }
-  .division .content-page .presentation {
-    height: auto;
-  }
-  .division .content-page .presentation .presentation-container {
-    grid-template-columns: auto;
-    padding: 100px 0px;
-  }
-  .division .content-page .presentation .presentation-container .left-content .text h1 {
-    font: normal normal bold 3.5em "Public Sans";
-  }
-  .division .content-page .presentation .presentation-container .left-content .text p {
-    font: normal normal bold 1em/1.6em "Public Sans";
-  }
-  .division .content-page .about-me {
-    height: auto;
-    padding: 100px 0;
-  }
-  .division .content-page .about-me .content {
-    flex-direction: column;
-    margin: 30px auto;
-  }
-  .division .content-page .about-me .content .left-content p {
-    font: normal normal normal 1em/2em "Public Sans";
+  .division .content-page .home-grid .item:nth-child(1) .description h1 {
+    font: normal normal bold 2.5rem "Poppins", sans-serif;
     margin-bottom: 0;
   }
-  .division .content-page .skills {
-    height: auto;
-    padding: 100px 0;
+  .division .content-page .home-grid .item:nth-child(1) .description p {
+    font: normal normal normal 1.7rem "Poppins", sans-serif;
+    margin-top: 1rem;
   }
-  .division .content-page .skills .three-cards {
-    grid-template-columns: auto;
+  .division .content-page .home-grid .item:nth-child(1) .floating-image {
+    width: 25rem;
+    right: 10rem;
   }
-  .division .content-page .experience {
-    height: auto;
-    padding: 100px 0;
+  .division .content-page .home-grid .item:nth-child(2) h2, .division .content-page .home-grid .item:nth-child(3) h2 {
+    font: normal normal bold 2.5rem "Poppins", sans-serif;
   }
-  .division .content-page .experience .experience-container {
-    grid-template-columns: auto;
+  .division .content-page .home-grid .item:nth-child(2) svg, .division .content-page .home-grid .item:nth-child(3) svg {
+    font-size: 13rem;
   }
-  .division .content-page .experience .experience-container .jobs,
-  .division .content-page .experience .experience-container .studies {
-    padding: 20px 25px;
+  .division .content-page .home-grid .item:nth-child(4) .image {
+    width: 23rem;
+    height: 23rem;
+  }
+  .division .content-page .home-grid .item:nth-child(5) .description h1 {
+    font: normal normal bold 10rem/10rem "Poppins", sans-serif;
+  }
+  .division .content-page .home-grid .item:nth-child(5) .description h3 {
+    font: normal normal normal 3rem "Poppins", sans-serif;
+  }
+  .division .content-page .home-grid .item:nth-child(6) .description h1 {
+    font: normal normal bold 3rem "Poppins", sans-serif;
+  }
+  .division .content-page .home-grid .item:nth-child(6) .description p {
+    font: normal normal normal 2rem "Poppins", sans-serif;
+  }
+  .division .content-page .home-grid .item:nth-child(7) .icons {
+    max-width: 50rem;
+  }
+  .division .content-page .home-grid .item:nth-child(7) .icons div {
+    width: 5rem;
+  }
+  .division .content-page .home-grid .item:nth-child(8) {
+    height: 10rem;
+    grid-column: span 4;
+  }
+  .division .content-page .education .education-container {
+    grid-template-columns: 50% 50%;
+  }
+  .division .content-page .education .education-container .education-card {
+    padding: 3.5rem 4rem;
+  }
+  .division .content-page .education .education-container .education-card small {
+    font: normal italic normal 1.5rem "Poppins", sans-serif;
+  }
+  .division .content-page .education .education-container .education-card h1 {
+    font: normal normal normal 2rem "Poppins", sans-serif;
+  }
+  .division .content-page .experience .checkpoint {
+    max-width: 60rem;
+  }
+  .division .content-page .experience .checkpoint:nth-child(odd), .division .content-page .experience .checkpoint:nth-child(even) {
+    width: 100%;
+    transform: none;
+    padding-right: 0;
+    padding-left: 0;
+    border: none;
+  }
+  .division .content-page .experience .checkpoint:nth-child(odd)::before, .division .content-page .experience .checkpoint:nth-child(even)::before {
+    width: 3px;
+    height: 4rem;
+    top: -2rem;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .division .content-page .experience .checkpoint:nth-child(odd) div::before, .division .content-page .experience .checkpoint:nth-child(even) div::before {
+    top: -0.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .division .content-page .experience .checkpoint:nth-child(odd) div h3, .division .content-page .experience .checkpoint:nth-child(even) div h3 {
+    font: normal normal bold 1.7rem "Poppins", sans-serif;
+  }
+  .division .content-page .experience .checkpoint:nth-child(odd) div span, .division .content-page .experience .checkpoint:nth-child(even) div span {
+    font: normal italic 500 1.6rem "Poppins", sans-serif;
+  }
+  .division .content-page .experience .checkpoint:nth-child(odd) div p, .division .content-page .experience .checkpoint:nth-child(even) div p {
+    font: normal normal normal 1.5rem "Poppins", sans-serif;
   }
   .division .content-page .projects {
-    height: auto;
-    padding: 100px 0;
+    height: 65rem;
   }
   .division .content-page .projects .projects-cards {
+    grid-template-columns: repeat(auto-fill, minmax(0, 25rem));
+  }
+  .division .content-page .projects .projects-cards .project-card .bottom-content h1 a {
+    font: normal normal normal 1.7rem "Poppins", sans-serif;
+  }
+  .division .content-page .projects .projects-cards .project-card .bottom-content .technologies span {
+    font: normal normal normal 1rem "Poppins", sans-serif;
+  }
+  .division footer small {
+    font: normal normal bold 1.5em "Poppins", sans-serif;
+  }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  .division .content-page {
+    padding: 2rem;
+  }
+  .division .content-page .home-grid {
+    grid-template-rows: repeat(4, 1fr);
+  }
+  .division .content-page .home-grid .offline p,
+  .division .content-page .home-grid .offline svg {
+    font: normal normal normal 3rem "Poppins", sans-serif;
+  }
+  .division .content-page .home-grid .online p,
+  .division .content-page .home-grid .online svg {
+    font: normal normal normal 3rem "Poppins", sans-serif;
+  }
+  .division .content-page .home-grid .item:nth-child(1) {
+    grid-column: span 4;
+  }
+  .division .content-page .home-grid .item:nth-child(1) .description {
+    max-width: 70%;
+  }
+  .division .content-page .home-grid .item:nth-child(1) .description h1 {
+    font: normal normal bold 5rem "Poppins", sans-serif;
+  }
+  .division .content-page .home-grid .item:nth-child(1) .description p {
+    font: normal normal normal 2.8rem "Poppins", sans-serif;
+  }
+  .division .content-page .home-grid .item:nth-child(1) .floating-image {
+    width: 35rem;
+    right: 0rem;
+    top: 10rem;
+  }
+  .division .content-page .home-grid .item:nth-child(2) h2, .division .content-page .home-grid .item:nth-child(3) h2 {
+    font: normal normal bold 2.5rem "Poppins", sans-serif;
+  }
+  .division .content-page .home-grid .item:nth-child(2) svg, .division .content-page .home-grid .item:nth-child(3) svg {
+    font-size: 13rem;
+  }
+  .division .content-page .home-grid .item:nth-child(4) .image {
+    width: 23rem;
+    height: 23rem;
+  }
+  .division .content-page .home-grid .item:nth-child(5) .description h1 {
+    font: normal normal bold 10rem/10rem "Poppins", sans-serif;
+  }
+  .division .content-page .home-grid .item:nth-child(5) .description h3 {
+    font: normal normal normal 3rem "Poppins", sans-serif;
+  }
+  .division .content-page .home-grid .item:nth-child(6) .description h1 {
+    font: normal normal bold 5rem "Poppins", sans-serif;
+  }
+  .division .content-page .home-grid .item:nth-child(6) .description p {
+    font: normal normal normal 3rem "Poppins", sans-serif;
+  }
+  .division .content-page .home-grid .item:nth-child(7) .icons {
+    max-width: 50rem;
+  }
+  .division .content-page .home-grid .item:nth-child(7) .icons div {
+    width: 5rem;
+  }
+  .division .content-page .home-grid .item:nth-child(8) {
+    height: 10rem;
+    grid-column: span 4;
+  }
+  .division .content-page .education .education-container {
     grid-template-columns: auto;
   }
-  .division .content-page .projects .projects-cards .project-card a .top-image {
-    width: auto;
-    height: auto;
+  .division .content-page .education .education-container .education-card small {
+    font: normal italic normal 2rem "Poppins", sans-serif;
   }
-  .division .content-page .projects .projects-cards .project-card a .bottom-content {
-    padding: 1.3em;
+  .division .content-page .education .education-container .education-card h1 {
+    font: normal normal normal 3rem "Poppins", sans-serif;
   }
-  .division .content-page .projects .projects-cards .project-card a .bottom-content h1 {
-    font: normal normal normal 1.3em "Public Sans";
-    margin-bottom: 0px;
+  .division .content-page .experience .checkpoint {
+    max-width: 80rem;
   }
-  .division .content-page .projects .projects-cards .project-card a .bottom-content p {
-    font: normal normal normal 1.1em/1.5em "Public Sans";
+  .division .content-page .experience .checkpoint:nth-child(odd), .division .content-page .experience .checkpoint:nth-child(even) {
+    width: 100%;
+    transform: none;
+    padding-right: 0;
+    padding-left: 0;
+    border: none;
   }
-  .division .content-page footer {
-    height: 90px;
+  .division .content-page .experience .checkpoint:nth-child(odd)::before, .division .content-page .experience .checkpoint:nth-child(even)::before {
+    width: 3px;
+    height: 4rem;
+    top: -2rem;
+    left: 50%;
+    transform: translateX(-50%);
   }
-  .division .content-page footer small {
-    font: normal normal bold 0.9em "Public Sans";
+  .division .content-page .experience .checkpoint:nth-child(odd) div::before, .division .content-page .experience .checkpoint:nth-child(even) div::before {
+    top: -0.7rem;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .division .content-page .experience .checkpoint:nth-child(odd) div h3, .division .content-page .experience .checkpoint:nth-child(even) div h3 {
+    font: normal normal bold 2.5rem "Poppins", sans-serif;
+  }
+  .division .content-page .experience .checkpoint:nth-child(odd) div span, .division .content-page .experience .checkpoint:nth-child(even) div span {
+    font: normal italic 500 2.4rem/2rem "Poppins", sans-serif;
+  }
+  .division .content-page .experience .checkpoint:nth-child(odd) div p, .division .content-page .experience .checkpoint:nth-child(even) div p {
+    font: normal normal normal 2rem "Poppins", sans-serif;
+    margin-top: 2rem;
+  }
+  .division .content-page .projects {
+    height: 65rem;
+  }
+  .division .content-page .projects .projects-cards {
+    grid-template-columns: repeat(auto-fill, minmax(0, 25rem));
+  }
+  .division .content-page .projects .projects-cards .project-card .bottom-content h1 a {
+    font: normal normal normal 1.7rem "Poppins", sans-serif;
+  }
+  .division .content-page .projects .projects-cards .project-card .bottom-content .technologies span {
+    font: normal normal normal 1rem "Poppins", sans-serif;
+  }
+  .division footer small {
+    font: normal normal bold 1.5em "Poppins", sans-serif;
+  }
+}
+@media (max-width: 767px) {
+  .division .content-page {
+    padding: 2rem;
+  }
+  .division .content-page .home-grid {
+    grid-template-rows: repeat(4, 1fr);
+  }
+  .division .content-page .home-grid .offline p,
+  .division .content-page .home-grid .offline svg {
+    font: normal normal normal 3rem "Poppins", sans-serif;
+  }
+  .division .content-page .home-grid .online p,
+  .division .content-page .home-grid .online svg {
+    font: normal normal normal 3rem "Poppins", sans-serif;
+  }
+  .division .content-page .home-grid .item:nth-child(1) {
+    grid-column: span 4;
+  }
+  .division .content-page .home-grid .item:nth-child(1) .description {
+    max-width: 70%;
+  }
+  .division .content-page .home-grid .item:nth-child(1) .description h1 {
+    font: normal normal bold 5rem "Poppins", sans-serif;
+  }
+  .division .content-page .home-grid .item:nth-child(1) .description p {
+    font: normal normal normal 2.8rem "Poppins", sans-serif;
+  }
+  .division .content-page .home-grid .item:nth-child(1) .floating-image {
+    width: 35rem;
+    right: 0rem;
+    top: 10rem;
+  }
+  .division .content-page .home-grid .item:nth-child(2) h2, .division .content-page .home-grid .item:nth-child(3) h2 {
+    font: normal normal bold 2.5rem "Poppins", sans-serif;
+  }
+  .division .content-page .home-grid .item:nth-child(2) svg, .division .content-page .home-grid .item:nth-child(3) svg {
+    font-size: 13rem;
+  }
+  .division .content-page .home-grid .item:nth-child(4) .image {
+    width: 23rem;
+    height: 23rem;
+  }
+  .division .content-page .home-grid .item:nth-child(5) .description h1 {
+    font: normal normal bold 10rem/10rem "Poppins", sans-serif;
+  }
+  .division .content-page .home-grid .item:nth-child(5) .description h3 {
+    font: normal normal normal 3rem "Poppins", sans-serif;
+  }
+  .division .content-page .home-grid .item:nth-child(6) .description h1 {
+    font: normal normal bold 5rem "Poppins", sans-serif;
+  }
+  .division .content-page .home-grid .item:nth-child(6) .description p {
+    font: normal normal normal 3rem "Poppins", sans-serif;
+  }
+  .division .content-page .home-grid .item:nth-child(7) .icons {
+    max-width: 50rem;
+  }
+  .division .content-page .home-grid .item:nth-child(7) .icons div {
+    width: 5rem;
+  }
+  .division .content-page .home-grid .item:nth-child(8) {
+    height: 10rem;
+    grid-column: span 4;
+  }
+  .division .content-page .education .education-container {
+    grid-template-columns: auto;
+  }
+  .division .content-page .education .education-container .education-card small {
+    font: normal italic normal 2rem "Poppins", sans-serif;
+  }
+  .division .content-page .education .education-container .education-card h1 {
+    font: normal normal normal 3rem "Poppins", sans-serif;
+  }
+  .division .content-page .experience .checkpoint {
+    max-width: 80rem;
+  }
+  .division .content-page .experience .checkpoint:nth-child(odd), .division .content-page .experience .checkpoint:nth-child(even) {
+    width: 100%;
+    transform: none;
+    padding-right: 0;
+    padding-left: 0;
+    border: none;
+  }
+  .division .content-page .experience .checkpoint:nth-child(odd)::before, .division .content-page .experience .checkpoint:nth-child(even)::before {
+    width: 3px;
+    height: 4rem;
+    top: -2rem;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .division .content-page .experience .checkpoint:nth-child(odd) div::before, .division .content-page .experience .checkpoint:nth-child(even) div::before {
+    top: -0.7rem;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .division .content-page .experience .checkpoint:nth-child(odd) div h3, .division .content-page .experience .checkpoint:nth-child(even) div h3 {
+    font: normal normal bold 2.5rem "Poppins", sans-serif;
+  }
+  .division .content-page .experience .checkpoint:nth-child(odd) div span, .division .content-page .experience .checkpoint:nth-child(even) div span {
+    font: normal italic 500 2.4rem/2rem "Poppins", sans-serif;
+  }
+  .division .content-page .experience .checkpoint:nth-child(odd) div p, .division .content-page .experience .checkpoint:nth-child(even) div p {
+    font: normal normal normal 2rem "Poppins", sans-serif;
+    margin-top: 2rem;
+  }
+  .division .content-page .projects {
+    height: 65rem;
+  }
+  .division .content-page .projects .projects-cards {
+    grid-template-columns: repeat(auto-fill, minmax(0, 25rem));
+  }
+  .division .content-page .projects .projects-cards .project-card .bottom-content h1 a {
+    font: normal normal normal 1.7rem "Poppins", sans-serif;
+  }
+  .division .content-page .projects .projects-cards .project-card .bottom-content .technologies span {
+    font: normal normal normal 1rem "Poppins", sans-serif;
+  }
+  .division footer small {
+    font: normal normal bold 1.5em "Poppins", sans-serif;
   }
 }/*# sourceMappingURL=style.css.map */
