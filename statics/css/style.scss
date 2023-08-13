@@ -696,7 +696,7 @@ body {
                 &:nth-child(2) {
                     img {
                         right: -40px;
-                        transform: rotate(25deg);
+                        transform: rotate(25deg) scaleX(-1);
                     }
                 }
 
