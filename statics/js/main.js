@@ -57,11 +57,32 @@ function scrollToSection(section) {
     }, 500);
 }
 
+function countTo(target, duration, element) {
+    const start = parseInt($(element).data("from"));
+    const increment = Math.ceil((target - start) / duration);
+    let current = start;
+
+    const interval = setInterval(() => {
+        current += increment;
+        if ((increment > 0 && current >= target) || (increment < 0 && current <= target)) {
+            clearInterval(interval);
+            current = target;
+        }
+        $(element).text(current);
+    }, 10);
+}
+
 window.addEventListener('load', function (e) {
     // Funciones iniciales
     showDiscordAvatar();
     setInterval(showDiscordAvatar, 10000);
     $('.loader').addClass('close-loader');
+
+    // Contador
+    $("[data-from]").each(function () {
+        const target = parseInt($(this).data("to"));
+        countTo(target, 200, this);
+    });
 
     // Abrir y cerrar menú
     hamburguer.on('click', toggleSidebar);
