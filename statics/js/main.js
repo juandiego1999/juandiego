@@ -51,9 +51,9 @@ function toggleSidebar() {
 }
 
 function scrollToSection(section) {
-    const $container = $('.' + section).closest('.content-page');
-    $container.animate({
-        scrollTop: $('.' + section).offset().top - $container.offset().top + $container.scrollTop()
+    const bodySectionScroll = $('.' + section).closest('body');
+    bodySectionScroll.animate({
+        scrollTop: $('.' + section).offset().top - bodySectionScroll.offset().top + bodySectionScroll.scrollTop()
     }, 500);
 }
 
