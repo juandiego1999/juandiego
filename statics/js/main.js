@@ -81,7 +81,7 @@ window.addEventListener('load', function (e) {
     // Contador
     $("[data-from]").each(function () {
         const target = parseInt($(this).data("to"));
-        countTo(target, 200, this);
+        countTo(target, 500, this);
     });
 
     // Abrir y cerrar menú
